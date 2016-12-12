@@ -1,0 +1,61 @@
+<html>
+<script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+<script src = "jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+var destination = "houston";
+//Date formats are YYYYMMDD"+00" as a string
+var startD = "20161212";
+var endD = "20161214";
+
+function findEvents() {
+   var oArgs = {
+
+      app_key: "WLzwCkPfBxvFrMHm",
+
+      q: destination,
+
+      location: destination,
+
+      "date": startD + "00-" + endD + "00",
+
+      page_size: 6,
+
+      sort_order: "popularity",
+
+   };
+
+   EVDB.API.call("/events/search", oArgs, function(oData) {
+    var response = oData.events;
+
+    console.log(oData.events);
+    
+    function eventsDetails() {
+      for (i = 0; i < oData.events.event.length; i++) {
+        console.log(response.event[i].title);
+        console.log("Location: " + response.event[i].venue_name);
+        console.log("Be there by: " + response.event[i].start_time);
+        if (response.event[i].description != null) {
+        console.log(response.event[i].description);
+        }
+        console.log("visit: " + response.event[i].venue_url);
+        console.log("-----------");
+      }
+    }
+
+    eventsDetails();
+    });
+
+}
+
+</script>
+
+<body>
+
+Open the console for results <br><br>
+
+<input type="button" onclick="findEvents()" value="Find something cool to do!" /> <br>
+
+</body>
+
+</html>

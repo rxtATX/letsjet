@@ -1,0 +1,81 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+	    <!-- Intro Header -->
+	    <header class="intro">
+	        <div class="intro-body">
+	            <div class="row">
+	                <div class="col-md-8 col-md-offset-2">
+	                    <h1 class="brand-heading">Let'sJET</h1>
+							<h3>Press below for  a new adventure!</h3>
+								<a href="#flightResults"> 
+									<button class="btn btn-circle page-scroll" id="searchBtn"> 
+										<i class="fa fa-plane animated" id="btn-plane"></i>
+									</button> 
+	              				</a>
+	                </div>
+	            </div>
+	        </div>
+	    </header>
+
+	    <!-- Flight Results -->
+	    <section id="flightResults" class="container content-section">
+	        <div class="container row">
+	            <div class="col-lg-8 col-lg-offset-2 text-center">
+	                <h2>Your Top Flight Results!</h2>
+	                <p>This is where all of the flight results will go.</p>
+	            </div>                                
+	            <div class="table-responsive hidden"> <!-- Table still needs to be media friendly -->         
+	                <table class="table">
+	                  <thead>
+	                    <tr>
+	                      <th>No.</th>
+	                      <th>Flight Name</th>
+	                      <th>Depart</th>
+	                      <th>Duration</th>
+	                      <th>Arrive</th>
+	                      <th>Fare</th>
+	                      <th>Booking &amp; Events</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody id="flightBody">
+	                    <tr>
+	                      <td id="flight-number">1</td>
+	                      <td id="flight-name"><i class="fa fa-plane"></i>  Flight 1</td>
+	                      <td id="flight-depart"><i class="fa fa-clock-o"></i>  10:30 AM</td>
+	                      <td> &#8680; </td> <!--I will find a bigger arrow-->
+	                      <td id="flight-arrive"><i class="fa fa-clock-o"></i> 1:30 PM</td>
+	                      <td id="flight-cost"> $3,000 </td> 
+	                      <td id="book"> 
+	                      	<a href="#bookInfo">
+	                      		<button class="btn-custom">Click for more!</button>
+	                      	</a>
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </section>
+
+	    <!-- Booking and Events Info -->
+	    <section id="bookInfo" class="container content-section">
+	        <div class="container row">
+	            <div class="col-lg-8 col-lg-offset-2 text-center" id="eventsInfo">
+	                <h2>Booking and Events</h2>
+	                <p>This is where the booking and events info will go.</p>
+	                <!--Dynamically create book now button.-->
+	                <!--Not sure how we want to display the events info and yet.-->
+	                <!--Let me know if you need me to create a table or something-->
+	            </div>                                
+	        </div>
+	    </section>
+
+	    <!-- jQuery -->
+	    <script src="assets/vendor/jquery/jquery.js"></script>
+
+	    <!-- Bootstrap Core JavaScript -->
+	    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	    <!-- Javascript -->
+	    <script src="assets/javascript/app.js"></script>
