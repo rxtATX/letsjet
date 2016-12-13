@@ -1,53 +1,46 @@
 $(document).ready(function() {
 
-var lat = 29;
-var long = -95;
-var iata; //ScyScannerAPI
+var lat;
+var long;
+var iata;
 var queryURL;
-var destination; //EventfulAPI
+var destination;
 var nextSat = moment().endOf("week");
 var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
-//caution
-$(document).on("click", "#searchBtn", runButton);//Check syntax for correctness
-//caution
-
+//Button event listener
+$(document).on("click", "#searchBtn", runButton);
+//Function for button action
 function runButton() {
-  // findLocale();  CAUTION
   findDate();
   getLocation();
-  //Add format of returned data
-  
-  
+  findLocale();
+  //Add format of returned data 
 }
-
+//Calculates the date based on when the button is pressed.
 function findDate() {
   startD = moment(nextSat).format("YYYY-MM-DD");
   endD = moment(nextSun).format("YYYY-MM-DD");
 }
-//CAUTION
-function findLocale(position) { //Assign findLocale to button press
+//Feeds in lat and long values from getLocation()
+function findLocale(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
-
+  //AJAX call for SkyScanner API
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
     console.log(response);
+   //Loops through all the responses
    $.each(response.Quotes, function (key, value) {
-     findCityName(response.Places, value.OutboundLeg.DestinationId, value.MinPrice);
-       
+      findCityName(response.Places, value.OutboundLeg.DestinationId, value.MinPrice);
     });
   }).fail(function(error){
     console.log(error);
-  $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
+    $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
   });
-
-  console.log(lat);
-  console.log(long);
 };
-
-
-function findCityName(data, cityId, price) {
+//After city id is pulled, runs through "Places" to identify and convert into words.
+function findCityName(data, cityId, price) {//Have to pass new variables here to add...
   console.log("my city id is: " + cityId);
   var cityName = "Not found.";
 
@@ -55,30 +48,21 @@ function findCityName(data, cityId, price) {
     var arrID = Number(value.PlaceId);
     var mycID = Number(cityId);
     if (arrID === mycID) {
-      // alert('Hello World');
     var nameOfCity = value.Name;
-      var flight = '<li><a href="#">' + nameOfCity + ' $' + price + '</a></li>';
+      var flight = '<li><a href="#">' + nameOfCity + ' $' + price + '</a></li>'; //Add to here.
       $('#myFlights').append(flight);
     }
-    console.log("my city id is: " + cityId);
-     console.log(value.Name);
-     console.log(value.PlaceId);
   }, function(){
     return cityName;  
   });
 }
-
+//HTML5 geolocation function
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(findLocale);
-    } else { 
-        var log = "Geolocation is not supported by this browser.";
-        console.log(log);
-    }
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(findLocale);
+  } else { 
+      var log = "Geolocation is not supported by this browser.";
+      console.log(log);
+  }
 }
-
-//Caution
-
-
-
 })
