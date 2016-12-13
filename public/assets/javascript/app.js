@@ -16,6 +16,7 @@ $("#searchBtn").on("click", runButton);//Check syntax for correctness
 function runButton() {
   // findLocale();  CAUTION
   findDate();
+  //Add format of returned data
   
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
     console.log(response);
@@ -43,6 +44,8 @@ function findLocale() { //Assign findLocale to button press
   console.log(lat);
   console.log(long);
 };
+
+
 //Caution
 
 
