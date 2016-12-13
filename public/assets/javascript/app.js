@@ -10,7 +10,7 @@ var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
 //caution
-$("#searchBtn").on("click", runButton());//Check syntax for correctness
+$("#searchBtn").on("click", runButton);//Check syntax for correctness
 //caution
 
 function runButton() {
@@ -31,7 +31,7 @@ function findDate() {
 }
 
 function findLocale() { //Assign findLocale to button press
-    $.getJSON("http://ip-api.com/json",function(data2){
+    $.getJSON("https://ip-api.com/json",function(data2){
       lat = data2.lat;
       long = data2.lon;
       queryURL = "https://airport.api.aero/airport/nearest/" + lat + "/" + long + "?maxAirports=1&user_key=ff6c3f7204f3776f1e0b697b52524c55";
