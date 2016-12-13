@@ -9,25 +9,34 @@ var nextSat = moment().endOf("week");
 var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
-
-$("#searchBtn").on("click", runButton());
+//caution
+$("#searchBtn").on("click", runButton());//Check syntax for correctness
+//caution
 
 function runButton() {
-	findLocale();
-	findDate();
-};
+  findLocale();
+  findDate();
+  
+  $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
+    console.log(response);
+  }).fail(function(error){
+    console.log(error);
+  $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
+  });
+}
 
 function findDate() {
-	startD = moment(nextSat).format("YYYY-MM-DD");
-	endD = moment(nextSun).format("YYYY-MM-DD");
-};
+  startD = moment(nextSat).format("YYYY-MM-DD");
+  endD = moment(nextSun).format("YYYY-MM-DD");
+}
 
-function findLocale() {
-  	$.getJSON("http://ip-api.com/json",function(data2){
+function findLocale() { //Assign findLocale to button press
+    $.getJSON("http://ip-api.com/json",function(data2){
       lat = data2.lat;
       long = data2.lon;
       queryURL = "https://airport.api.aero/airport/nearest/" + lat + "/" + long + "?maxAirports=1&user_key=ff6c3f7204f3776f1e0b697b52524c55";
-  	});
+     
+    });
   //Find a way to convert to IATA
   //API wants to be run server-side
   console.log(queryURL);
