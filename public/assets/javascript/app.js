@@ -47,25 +47,3 @@ function findLocale() { //Assign findLocale to button press
 
 
 })
-var SabreDevStudio = require('sabre-dev-studio');
-var sabre_dev_studio = new SabreDevStudio({
-  client_id:     'V1:7b5jq8ymhffh0vjp:DEVCENTER:EXT',
-  client_secret: 'y2gOWtL1',
-  uri:           'https://api.test.sabre.com'
-});
-var iata = "LAX";
-var startD = "2016-12-10";
-var endD = "2016-12-11";
-var options = {
-	origin: iata,
-	departuredate: startD,
-	returndate: endD,
-};
-var callback = function(error, data) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(JSON.stringify(JSON.parse(data)));
-  }
-};
-sabre_dev_studio.get('/v1/lists/supported/shop/flights/fare/?origin=' + iata + "&departuredate=" + startD + "&returndate=" + endD + "&maxfare=500&topdestinations=10", options, callback);
