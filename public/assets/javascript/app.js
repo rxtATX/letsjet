@@ -29,7 +29,7 @@ function findDate() {
   startD = moment(nextSat).format("YYYY-MM-DD");
   endD = moment(nextSun).format("YYYY-MM-DD");
 }
-
+//CAUTION
 function findLocale() { //Assign findLocale to button press
     $.getJSON("https://ip-api.com/json",function(data2){//Not compatible with Heroku
       lat = data2.lat;
@@ -43,6 +43,7 @@ function findLocale() { //Assign findLocale to button press
   console.log(lat);
   console.log(long);
 };
+//Caution
 
 
 
