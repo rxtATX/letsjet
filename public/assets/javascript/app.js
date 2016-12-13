@@ -10,20 +10,16 @@ var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
 //caution
-$("#searchBtn").on("click", runButton);//Check syntax for correctness
+$(document).on("click", "#searchBtn", runButton);//Check syntax for correctness
 //caution
 
 function runButton() {
   // findLocale();  CAUTION
   findDate();
+  getLocation();
   //Add format of returned data
   
-  $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
-    console.log(response);
-  }).fail(function(error){
-    console.log(error);
-  $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
-  });
+  
 }
 
 function findDate() {
@@ -31,20 +27,55 @@ function findDate() {
   endD = moment(nextSun).format("YYYY-MM-DD");
 }
 //CAUTION
-function findLocale() { //Assign findLocale to button press
-    $.getJSON("https://ip-api.com/json",function(data2){//Not compatible with Heroku
-      lat = data2.lat;
-      long = data2.lon;
-      queryURL = "https://airport.api.aero/airport/nearest/" + lat + "/" + long + "?maxAirports=1&user_key=ff6c3f7204f3776f1e0b697b52524c55";
-     
+function findLocale(position) { //Assign findLocale to button press
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+
+  $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
+    console.log(response);
+   $.each(response.Quotes, function (key, value) {
+     findCityName(response.Places, value.OutboundLeg.DestinationId, value.MinPrice);
+       
     });
-  //Find a way to convert to IATA
-  //API wants to be run server-side
-  console.log(queryURL);
+  }).fail(function(error){
+    console.log(error);
+  $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
+  });
+
   console.log(lat);
   console.log(long);
 };
 
+
+function findCityName(data, cityId, price) {
+  console.log("my city id is: " + cityId);
+  var cityName = "Not found.";
+
+  $.each(data, function(key, value){
+    var arrID = Number(value.PlaceId);
+    var mycID = Number(cityId);
+    if (arrID === mycID) {
+      // alert('Hello World');
+    var nameOfCity = value.Name;
+      var flight = '<li><a href="#">' + nameOfCity + ' $' + price + '</a></li>';
+      $('#myFlights').append(flight);
+    }
+    console.log("my city id is: " + cityId);
+     console.log(value.Name);
+     console.log(value.PlaceId);
+  }, function(){
+    return cityName;  
+  });
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(findLocale);
+    } else { 
+        var log = "Geolocation is not supported by this browser.";
+        console.log(log);
+    }
+}
 
 //Caution
 
