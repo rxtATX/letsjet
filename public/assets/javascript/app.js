@@ -30,8 +30,13 @@ function findDate() {
 }
 //Feeds in lat and long values from getLocation()
 function findLocale(position) {
+  if (position.coords != undefined) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
+  } else {
+    lat = 29;
+    long = -95;
+  }
   //AJAX call for SkyScanner API
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
     console.log(response);
