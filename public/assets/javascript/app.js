@@ -4,11 +4,11 @@ var lat;
 var long;
 var iata;
 var queryURL;
-var destination;
 var nextSat = moment().endOf("week");
 var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
+var nameOfCity;
 //Button event listener
 $(document).on("click", "#searchBtn", runButton);
 //Function for button action
@@ -64,5 +64,39 @@ function getLocation() {
       var log = "Geolocation is not supported by this browser.";
       console.log(log);
   }
+}
+
+$(".eventsButton").on("click", findEvents);
+function findEvents() {
+   var oArgs = {
+      app_key: "WLzwCkPfBxvFrMHm",
+      q: nameOfCity,
+      locaction: nameOfCity,
+      "date": startD + "00-" + endD + "00",
+      page_size: 6,
+      sort_order: "popularity",
+   };
+
+   EVDB.API.call("/events/search", oArgs, function(oData) {
+    var response = oData.events;
+
+    console.log(oData.events);
+    
+    function eventsDetails() {
+      for (i = 0; i < oData.events.event.length; i++) {
+        console.log(response.event[i].title);
+        console.log("Location: " + response.event[i].venue_name);
+        console.log("Be there by: " + response.event[i].start_time);
+        if (response.event[i].description != null) {
+        console.log(response.event[i].description);
+        }
+        console.log("visit: " + response.event[i].venue_url);
+        console.log("-----------");
+      }
+    }
+
+    eventsDetails();
+    });
+
 }
 })
