@@ -17,6 +17,11 @@ function runButton() {
   getLocation();
   findLocale();
   //Add format of returned data 
+  showTable();
+}
+// Show the divs for flight results once submit button is clicked.
+function showTable() {
+    $("#flightResults").show();
 }
 //Calculates the date based on when the button is pressed.
 function findDate() {
