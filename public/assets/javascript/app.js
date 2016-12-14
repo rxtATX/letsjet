@@ -13,6 +13,7 @@ var nameOfCity;
 $(document).on("click", "#searchBtn", runButton);
 //Function for button action
 function runButton() {
+  $("#table-content").empty();
   findDate();
   getLocation();
   findLocale();
@@ -27,14 +28,21 @@ function showTable() {
 function findDate() {
   startD = moment(nextSat).format("YYYY-MM-DD");
   endD = moment(nextSun).format("YYYY-MM-DD");
+  console.log("FROM: " + startD + " - TO: " + endD);
 }
 //Feeds in lat and long values from getLocation()
 function findLocale(position) {
+  if (position.coords != undefined) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
+  } else {
+    lat = 29;
+    long = -95;
+  }
+  console.log("LAT: " + lat + "/LONG:" + long);
   //AJAX call for SkyScanner API
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
-    console.log(response);
+    // console.log(response); //JSON OBJECT
    //Loops through all the responses
    $.each(response.Quotes, function (key, value) {
       findCityName(response.Places, value.OutboundLeg.DestinationId, value.MinPrice);
@@ -48,7 +56,6 @@ function findLocale(position) {
 function findCityName(data, cityId, price) {//Have to pass new variables here to add...
   console.log("my city id is: " + cityId);
   var cityName = "Not found.";
-
   $.each(data, function(key, value){
     var arrID = Number(value.PlaceId);
     var mycID = Number(cityId);
@@ -56,6 +63,9 @@ function findCityName(data, cityId, price) {//Have to pass new variables here to
     var nameOfCity = value.Name;
       var flight = '<li><a href="#">' + nameOfCity + ' $' + price + '</a></li>'; //Add to here.
       $('#myFlights').append(flight);
+      console.log("YOU'RE HEADED TO: " + nameOfCity);
+      console.log("IT'LL COST YOU: $" + price);
+      console.log("--------------");
     }
   }, function(){
     return cityName;  
