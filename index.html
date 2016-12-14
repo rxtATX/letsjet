@@ -10,7 +10,6 @@
 	    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	    <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 		
-
 	    <!-- Custom Fonts -->
 	    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -43,15 +42,15 @@
 	    </header>
 
 	    <!-- Flight Results -->
-	    <div id="flightResults" class="container content-section">
+	    <div id="flightResults" class="container content-section" style="display:none;">
 	        <div class="container">
 	        	<div class="row">
-		            <div class="col-lg-8 col-lg-offset-2 text-center" style="display:none;">
+		            <div class="col-lg-8 col-lg-offset-2 text-center">
 		                <h2>Your Top Flight Results!</h2>
 		            </div>
 	            </div>
 		            <div class="row">                                
-			            <div class="table-responsive" style="display:none;"> <!-- Table still needs to be media friendly -->         
+			            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
 			                <table class="table">
 			                  <thead>
 			                    <tr>
@@ -70,7 +69,7 @@
 			                      <td id="flight-number">1</td>
 			                      <td id="flight-name"><i class="fa fa-plane"></i>  Flight 1</td>
 			                      <td id="flight-depart"><i class="fa fa-clock-o"></i>  10:30 AM</td>
-			                      <td> &#8680; </td> <!--I will find a bigger arrow-->
+			                      <td><span id="arrow"> &nbsp; &#10230; </span></td> 
 			                      <td id="flight-arrive"><i class="fa fa-clock-o"></i> 1:30 PM</td>
 			                      <td id="flight-cost"> $3,000 </td> 
 			                      <td id="book"> 
@@ -90,15 +89,6 @@
 	    </div>
 		
 		<!-- Modal content -->
-		<div class="modal fade" id="bookEvents" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<p>Events</p>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	    <!-- jQuery -->
 	    <script src="assets/vendor/jquery/jquery.js"></script>
