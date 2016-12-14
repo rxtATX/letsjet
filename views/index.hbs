@@ -4,7 +4,7 @@
 	    <header class="intro">
 	        <div class="intro-body">
 	            <div class="row">
-	                <div class="col-md-8 col-md-offset-2 title">
+	                <div class="col-md-8 col-md-offset-2">
 	                    <h1 class="brand-heading">LetsJET</h1>
 								<a href="#flightResults"> 
 									<button class="btn btn-circle page-scroll" id="searchBtn"> 
@@ -18,51 +18,11 @@
 	    </header>
 
 	    <!-- Flight Results -->
-	    <div id="flightResults" class="container content-section" style="display:none;">
-	        <div class="container">
-	        	<div class="row">
-		            <div class="col-lg-8 col-lg-offset-2 text-center">
-		                <h2>Your Top Flight Results!</h2>
-		            </div>
-	    <section id="flightResults" class="container content-section">
-	        <div class="container row">
-	            <div class="col-lg-8 col-lg-offset-2 text-center">
-	                <h2>Your Top Flight Results!</h2>
-	                <p>This is where all of the flight results will go.</p>
-	            </div>    
+	    <div id="flightResults" class="container content-section"> 
 	            <ul id="myFlights">
 	            	
 	            </ul>                            
-	            <div class="table-responsive hidden"> <!-- Table still needs to be media friendly -->         
-	                <table class="table">
-	                  <thead>
-	                    <tr>
-	                      <th>No.</th>
-	                      <th>Flight Name</th>
-	                      <th>Depart</th>
-	                      <th>Duration</th>
-	                      <th>Arrive</th>
-	                      <th>Fare</th>
-	                      <th>Booking &amp; Events</th>
-	                    </tr>
-	                  </thead>
-	                  <tbody id="flightBody">
-	                    <tr>
-	                      <td id="flight-number">1</td>
-	                      <td id="flight-name"><i class="fa fa-plane"></i>  Flight 1</td>
-	                      <td id="flight-depart"><i class="fa fa-clock-o"></i>  10:30 AM</td>
-	                      <td> &#8680; </td> <!--I will find a bigger arrow-->
-	                      <td id="flight-arrive"><i class="fa fa-clock-o"></i> 1:30 PM</td>
-	                      <td id="flight-cost"> $3,000 </td> 
-	                      <td id="book"> 
-	                      	<a href="#bookInfo">
-	                      		<button class="btn-custom">Click for more!</button>
-	                      	</a>
-	                      </td>
-	                    </tr>
-	                  </tbody>
-	                </table>
-	            </div>
+
 		            <div class="row">                                
 			            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
 			                <table class="table">
@@ -74,11 +34,11 @@
 			                      <th>Duration</th>
 			                      <th>Arrive</th>
 			                      <th>Fare</th>
-			                      <th>Booking</th>
+			                  
 			                      <th>Events</th>
 			                    </tr>
 			                  </thead>
-			                  <tbody>
+			                  <tbody id="table-content">
 			                    <tr>
 			                      <td id="flight-number">1</td>
 			                      <td id="flight-name"><i class="fa fa-plane"></i>  Flight 1</td>
@@ -86,10 +46,7 @@
 			                      <td><span id="arrow"> &nbsp; &#10230; </span></td> 
 			                      <td id="flight-arrive"><i class="fa fa-clock-o"></i> 1:30 PM</td>
 			                      <td id="flight-cost"> $3,000 </td> 
-			                      <td id="book"> 
-			                      	<a href="#bookInfo" class="btn btn-custom bookBtn">Click to book!
-			                      	</a>
-			                      </td>
+			                      
 			                      <td id="events"> 
 			                      	<a href="#bookEvents" class="btn btn-custom eventsBtn" data-toggle="modal">Click for events!
 			                      	</a>
@@ -99,5 +56,5 @@
 			                </table>
 			            </div>
 		        	</div>
-	        </div>
+	       
 	    </div>
