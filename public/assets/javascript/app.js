@@ -13,16 +13,26 @@ var nameOfCity;
 $(document).on("click", "#searchBtn", runButton);
 //Function for button action
 function runButton() {
-  $("#table-content").empty();
+  showTable();
+  $("#table-content").empty(); // We should end up doing this and 
+  // dynamically creating an events btn like the one on html currently.
+  // Emptied these columns, kept events btn.
+  // $("#flight-destination").empty();
+  // $("#flight-airline").empty();
+  // $("#flight-outbound").empty();
+  // $("#flight-inbound").empty();
+  // $("#flight-cost").empty();
   findDate();
   getLocation();
   findLocale();
   //Add format of returned data 
-  showTable();
 }
 // Show the divs for flight results once submit button is clicked.
 function showTable() {
     $("#flightResults").show();
+    $('html,body').animate({
+        scrollTop: $("#flightResults").offset().top},
+        'slow'); // slow page scroll function.
 }
 //Calculates the date based on when the button is pressed.
 function findDate() {
@@ -80,8 +90,8 @@ function getLocation() {
       console.log(log);
   }
 }
-
-$(".eventsButton").on("click", findEvents);
+//***I think you meant .eventsBtn, but I didn't want to change it in case you had it linked elsewhere.
+$(".eventsBtn").on("click", findEvents);
 function findEvents() {
    var oArgs = {
       app_key: "WLzwCkPfBxvFrMHm",

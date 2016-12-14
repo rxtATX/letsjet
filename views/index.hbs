@@ -11,18 +11,23 @@
 										<i class="fa fa-plane animated" id="btn-plane"></i>
 									</button> 
 	              				</a>
-	              					<h3>Press button for  a new adventure!</h3>
+	              					<h3>PRESS TO JET!</h3>
 	                </div>
 	            </div>
 	        </div>
 	    </header>
 
 	    <!-- Flight Results -->
-	    <div id="flightResults" class="container content-section"> 
+	    <div id="flightResults" class="container content-section" style="display:none;"> 
 	            <ul id="myFlights">
 	            	
 	            </ul>                            
-
+			<div class="container">
+	        	<div class="row">
+		            <div class="col-lg-8 col-lg-offset-2 text-center"">
+		                <h2>Your Top Flight Results!</h2>
+		            </div>
+	            </div>
 		            <div class="row">                                
 			            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
 			                <table class="table">
@@ -31,7 +36,6 @@
 			                      <th>Destination</th>	
 			                      <th>Airline</th>
 			                      <th>Outbound Departure</th>
-			                   
 			                      <th>Inbound Departure</th>
 			                      <th>Fare</th>
 			                      <th>Events</th>
@@ -42,12 +46,10 @@
 			                      <td id="flight-destination">1</td>
 			                      <td id="flight-airline"><i class="fa fa-plane"></i>  Flight 1</td>
 			                      <td id="flight-outbound"><i class="fa fa-clock-o"></i>  10:30 AM</td>
-			               
 			                      <td id="flight-inbound"><i class="fa fa-clock-o"></i> 1:30 PM</td>
-			                      <td id="flight-cost"> $3,000 </td> 
-			                      
+			                      <td id="flight-cost"> $3,000</td>             
 			                      <td id="events"> 
-			                      	<a href="#bookEvents" class="btn btn-custom eventsBtn" data-toggle="modal">Click for events!
+			                      	<a href="#bookEvents" class="btn btn-custom eventsBtn">Click for events!
 			                      	</a>
 			                      </td>
 			                    </tr>
@@ -55,5 +57,5 @@
 			                </table>
 			            </div>
 		        	</div>
-	       
+	       	</div>
 	    </div>
