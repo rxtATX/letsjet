@@ -32,6 +32,7 @@ function findDate() {
 }
 //Feeds in lat and long values from getLocation()
 function findLocale(position) {
+  //Client-side javascript ip address identify to locate
   if (position.coords != undefined) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
