@@ -14,14 +14,14 @@ $(document).on("click", "#searchBtn", runButton);
 //Function for button action
 function runButton() {
   showTable();
-  $("#table-content").empty(); // We should end up doing this and 
+  // $("#table-content").empty(); // We should end up doing this and 
   // dynamically creating an events btn like the one on html currently.
   // Emptied these columns, kept events btn.
-  // $("#flight-destination").empty();
-  // $("#flight-airline").empty();
-  // $("#flight-outbound").empty();
-  // $("#flight-inbound").empty();
-  // $("#flight-cost").empty();
+  $("#flight-destination").empty();
+  $("#flight-airline").empty();
+  $("#flight-outbound").empty();
+  $("#flight-inbound").empty();
+  $("#flight-cost").empty();
   findDate();
   getLocation();
   findLocale();
@@ -91,7 +91,7 @@ function getLocation() {
   }
 }
 //***I think you meant .eventsBtn, but I didn't want to change it in case you had it linked elsewhere.
-$(".eventsBtn").on("click", findEvents);
+$("#eventsBtn").on("click", findEvents);
 function findEvents() {
    var oArgs = {
       app_key: "WLzwCkPfBxvFrMHm",

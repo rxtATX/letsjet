@@ -49,8 +49,8 @@
 			                      <td id="flight-inbound"><i class="fa fa-clock-o"></i> </td>
 			                      <td id="flight-cost"> </td>             
 			                      <td id="events"> 
-			                      	<a href="#bookEvents" class="btn btn-custom eventsBtn">Click for events!
-			                      	</a>
+			                      	<button class="btn btn-custom" id="eventsBtn">Click for events!
+			                      	</button>
 			                      </td>
 			                    </tr>
 			                  </tbody>
@@ -60,5 +60,18 @@
 	       	</div>
 	    </div>
 
-	    <!--Events Card--> 
-	    <!--Still needs to be worked on-->
+	    <!--Events Modal--> 
+	    <div id="myModal" class="modal">
+		  <!-- Modal content -->
+			<div class="modal-content">
+		    	<div class="modal-header">
+		     		<span class="close">&times;</span>
+		      		<h2 id="eventsTitle">Events</h2>
+		    	</div>
+		    	<div class="modal-body">
+		      		<h3 class="modal-body-text">Description</h2>
+		      		<p id="eventsDescription"> <p>
+		      		<h3 class="modal-body-text">Links</h2>
+		      		<p id="eventsLinks"> </p>
+		    	</div>
+		</div>
