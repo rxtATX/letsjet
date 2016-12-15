@@ -1,85 +1,74 @@
 
 
-	    <!-- Intro Header -->
-	    <header class="intro" id="homePage">
-	        <div class="intro-body">
-	            <div class="row">
-	                <div class="col-md-8 col-md-offset-2">
-	                    <h1 class="brand-heading">LetsJET</h1>
-								<a href="#flightResults"> 
-									<button class="btn btn-circle page-scroll" id="searchBtn"> 
-										<i class="fa fa-plane animated" id="btn-plane"></i>
-									</button> 
-	              				</a>
-	              					<h3>PRESS TO JET!</h3>
-	                </div>
-	            </div>
-	        </div>
-	    </header>
+<!-- Intro Header -->
+<header class="intro" id="homePage">
+<div class="intro-body">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="brand-heading">LetsJET</h1>
+					<a href="#flightResults"> 
+						<button class="btn btn-circle page-scroll" id="searchBtn"> 
+							<i class="fa fa-plane animated" id="btn-plane"></i>
+						</button> 
+      				</a>
+      					<h3>PRESS TO JET!</h3>
+        </div>
+    </div>
+</div>
+</header>
 
-	    <!-- Flight Results -->
-	    <div id="flightResults" class="container content-section" style="display:none;"> 
-	            <ul id="myFlights">
-	            	
-	            </ul>                            
-			<div class="container">
-	        		<div class="row">
-		            	<div class="col-lg-8 col-lg-offset-2 text-center"">
-		                	<h2>Your Top Flight Results!</h2>
-		            	</div>
-	            	</div>
-		            <div class="row">                                
-			            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
-			                <table class="table">
-			                  <thead>
-			                    <tr>
-			                      <th>Destination</th>	
-			                      <th>Airline</th>
-			                      <th>Outbound Departure</th>
-			                      <th>Inbound Departure</th>
-			                      <th>Fare</th>
-			                      <th>Events</th>
-			                    </tr>
-			                  </thead>
-			                  <tbody id="table-content">
-			                    <tr>
-			                      <td id="flight-destination"> </td>
-			                      <td id="flight-airline"><i class="fa fa-plane"></i> </td>
-			                      <td id="flight-outbound"><i class="fa fa-clock-o"></i> </td>
-			                      <td id="flight-inbound"><i class="fa fa-clock-o"></i> </td>
-			                      <td id="flight-cost"> </td>             
-			                      <td id="events"> 
-			                      	<button class="btn btn-custom" id="eventsBtn">Click for events!
-			                      	</button>
-			                      </td>
-			                    </tr>
-			                  </tbody>
-			                </table>
-			            </div>
-		        	</div>
-		        	<div class="row">
-		        		<div class="col-lg-8 col-lg-offset-2 text-center">
-							<a href="#">
-		                		<button class="btn btn-custom" id="homeBtn">Go Back</button>
-		                	</a>
-		            	</div>
-		        	</div>
-					
-	       	</div>
-	    </div>
+<!-- Flight Results -->
+<div id="flightResults" class="container content-section" style="display:none;"> 
+    <ul id="myFlights">
+    	
+    </ul>                            
+<div class="container">
+		<div class="row">
+        	<div class="col-lg-8 col-lg-offset-2 text-center"">
+            	<h2>Your Top Flight Results!</h2>
+        	</div>
+    	</div>
+        <div class="row">                                
+            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Destination</th>	
+                      <th><i class="fa fa-clock-o"></i> Departure Date</th>
+                      <th>Fare</th>
+                      <th><i class="fa fa-plane"></i> Airline Out</th>
+                      <th><i class="fa fa-clock-o"></i> Return Date</th>
+                      <th><i class="fa fa-plane"></i> Airline In</th>
+                      <th>Events</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-content"></tbody>
+                </table>
+            </div>
+    	</div>
+    	<div class="row">
+    		<div class="col-lg-8 col-lg-offset-2 text-center">
+				<a href="#">
+            		<button class="btn btn-custom" id="homeBtn">Go Back</button>
+            	</a>
+        	</div>
+    	</div>
+		
+	</div>
+</div>
 
-	    <!--Events Modal--> 
-	    <div id="myModal" class="modal">
-		  <!-- Modal content -->
-			<div class="modal-content">
-		    	<div class="modal-header">
-		     		<span class="close">&times;</span>
-		      		<h2 id="eventsTitle">Events</h2>
-		    	</div>
-		    	<div class="modal-body">
-		      		<h3 class="modal-body-text">Description</h2>
-		      		<p id="eventsDescription"> <p>
-		      		<h3 class="modal-body-text">Links</h2>
-		      		<p id="eventsLinks"> </p>
-		    	</div>
-		</div>
+<!--Events Modal--> 
+<div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+	<div class="modal-header">
+ 		<span class="close">&times;</span>
+  		<h2 id="eventsTitle">Events</h2>
+	</div>
+	<div class="modal-body">
+  		<h3 class="modal-body-text">Description</h2>
+  		<p id="eventsDescription"> <p>
+  		<h3 class="modal-body-text">Links</h2>
+  		<p id="eventsLinks"> </p>
+	</div>
+</div>
