@@ -1,7 +1,7 @@
 
 
 	    <!-- Intro Header -->
-	    <header class="intro">
+	    <header class="intro" id="homePage">
 	        <div class="intro-body">
 	            <div class="row">
 	                <div class="col-md-8 col-md-offset-2">
@@ -23,11 +23,11 @@
 	            	
 	            </ul>                            
 			<div class="container">
-	        	<div class="row">
-		            <div class="col-lg-8 col-lg-offset-2 text-center"">
-		                <h2>Your Top Flight Results!</h2>
-		            </div>
-	            </div>
+	        		<div class="row">
+		            	<div class="col-lg-8 col-lg-offset-2 text-center"">
+		                	<h2>Your Top Flight Results!</h2>
+		            	</div>
+	            	</div>
 		            <div class="row">                                
 			            <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
 			                <table class="table">
@@ -49,16 +49,37 @@
 			                      <td id="flight-inbound"><i class="fa fa-clock-o"></i> </td>
 			                      <td id="flight-cost"> </td>             
 			                      <td id="events"> 
-			                      	<a href="#bookEvents" class="btn btn-custom eventsBtn">Click for events!
-			                      	</a>
+			                      	<button class="btn btn-custom" id="eventsBtn">Click for events!
+			                      	</button>
 			                      </td>
 			                    </tr>
 			                  </tbody>
 			                </table>
 			            </div>
 		        	</div>
+		        	<div class="row">
+		        		<div class="col-lg-8 col-lg-offset-2 text-center">
+							<a href="#">
+		                		<button class="btn btn-custom" id="homeBtn">Go Back</button>
+		                	</a>
+		            	</div>
+		        	</div>
+					
 	       	</div>
 	    </div>
 
-	    <!--Events Card--> 
-	    <!--Still needs to be worked on-->
+	    <!--Events Modal--> 
+	    <div id="myModal" class="modal">
+		  <!-- Modal content -->
+			<div class="modal-content">
+		    	<div class="modal-header">
+		     		<span class="close">&times;</span>
+		      		<h2 id="eventsTitle">Events</h2>
+		    	</div>
+		    	<div class="modal-body">
+		      		<h3 class="modal-body-text">Description</h2>
+		      		<p id="eventsDescription"> <p>
+		      		<h3 class="modal-body-text">Links</h2>
+		      		<p id="eventsLinks"> </p>
+		    	</div>
+		</div>
