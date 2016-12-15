@@ -29,10 +29,16 @@ function runButton() {
 }
 // Show the divs for flight results once submit button is clicked.
 function showTable() {
-    $("#flightResults").show();
-    $('html,body').animate({
-        scrollTop: $("#flightResults").offset().top},
-        'slow'); // slow page scroll function.
+  // $("'html,body'").animate({
+  //   scrollTop: $("#flightResults").offset().top},
+  //   'slow'); // slow page scroll function, but does not work at the moment.
+  $("#flightResults").show();
+  // Hide and show home screen.
+  $('header').hide();
+  $("#homeBtn").click(function(){
+    $('header').show();
+    $("#flightResults").hide();
+  });
 }
 //Calculates the date based on when the button is pressed.
 function findDate() {
