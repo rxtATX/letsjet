@@ -241,12 +241,14 @@ p {
   }
   .brand-heading {
     font-size: 75px !important;
+    padding-top: 150px;
+    padding-bottom: 30px;
   }
   h2 {
     font-size: 14px;
   }
   h3 { 
-    font-size: 24px;
+    font-size: 36px;
   }
   p {
     font-size: 10px;
