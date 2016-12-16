@@ -1,97 +1,77 @@
+<!DOCTYPE html>
 <html>
-<script type="text/javascript" src="http://api.eventful.com/js/api"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-<script type="text/javascript">
- 
-var destination;
+<head>
+	<title></title>
+</head>
+<body>
+<button type='button' class='eventsBtn'>Click</button>
+<div id='myModal'></div>
+<script>
 var startD;
 var endD;
 var nameOfCity;
 
-// $(document).on("click", "#searchBtn", runButton);
-// $("#nextBtn").on("click", runNextWeekButton);
 $(document).on("click", ".eventsBtn", runEventsBtn);
 
-function runNextWeekButton() {
-  $("#table-content").empty();
-  findNextDate();
-  findLocale();
-}
-function findNextDate() {
-  var futureSat = moment(nextSat).add(7, "d");
-  var futureSun = moment(nextSun).add(7, "d");
-  futureSat = moment(futureSat).format("YYYYMMDD");
-  futureSun = moment(futureSun).format("YYYYMMDD");
-  startD = moment(futureSat).format("YYYY-MM-DD");
-  endD = moment(futureSun).format("YYYY-MM-DD");
-}
-function findDate() {
-  startD = moment(nextSat).format("YYYY-MM-DD");
-  endD = moment(nextSun).format("YYYY-MM-DD");
-}
 function runEventsBtn() {
+  startD = $(this).data("Stime");
+  startD = moment(startD).format(YYYYMMDD);
+  endD = $(this).data("eTime");
+  endD = moment(endD).format(YYYYMMDD);
   nameOfCity = $(this).data("value");
-  console.log(nameOfCity);
   loadModal();
   findEvents();
 }
+
 function findEvents() {
    
-   var oArgs = {
+	var oArgs = {
+	  app_key: "WLzwCkPfBxvFrMHm",
+	  q: nameOfCity,
+	  location: nameOfCity,
+	  "date": startD + "00-" + endD + "00",
+	  page_size: 6,
+	  sort_order: "popularity",
+	};
 
-      app_key: "WLzwCkPfBxvFrMHm",
+	EVDB.API.call("/events/search", oArgs, function(oData) {
+	var response = oData.events;
 
-      q: nameOfCity,
-
-      location: nameOfCity,
-
-      "date": startD + "00-" + endD + "00",
-      
-      page_size: 6,
-
-      sort_order: "popularity",
-
-   };
-
-   EVDB.API.call("/events/search", oArgs, function(oData) {
-    var response = oData.events;
-
-    console.log(oData.events);
-    
-    function eventsDetails() {
-      for (i = 0; i < oData.events.event.length; i++) {
-    if (response.event[i].description !== null) {
-      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
-    } else {
-      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
-    }
-        // console.log(response.event[i].title);
-        // console.log("Location: " + response.event[i].venue_name);
-        // console.log("Be there by: " + response.event[i].start_time);
-        // if (response.event[i].description != null) {
-        // console.log(response.event[i].description);
-        // }
-        // console.log("visit: " + response.event[i].venue_url);
-        // console.log("-----------");
-      }
-    }
-
-    eventsDetails();
-    });
-
+	function eventsDetails() {
+	    for (i = 0; i < oData.events.event.length; i++) {
+		    if (response.event[i].description !== null) {
+		      $("#modal-content").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
+		    } else {
+		      $("#modal-content").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
+		    }
+	    }
+	}
+	
+	eventsDetails();
+	});
 }
 
+function loadModal() {
+// Get the modal
+var modal = $("#myModal");
+// Get the button that opens the modal
+var btn = $("#eventsBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal
+$(span).on("click", closeOut);
+// When the user clicks anywhere outside of the modal, close it
+$(window).on("click", closeOut);
+// When the user clicks the button, open the modal 
+modal.style.display = "block";
+
+function closeOut() {
+  modal.style.display = "none";
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+}
 </script>
-
-<body>
-
-Open the console for results <br><br>
-
-<input class='eventsBtn' data-value="New Orleans" type="button" onclick="findEvents()" value="Find something cool to do!" /> <br>
-<div id='modal-body'></div>
 </body>
-
 </html>

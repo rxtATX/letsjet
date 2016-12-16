@@ -18,3 +18,9 @@ It's for the pilgrim whose weekend plans have fallen through, but who does not w
 
 As we establish our base of users, we will naturally want to incorporate a wider range of functionality and new reasons to use our app. Future features will include integrated booking, as mentioned before, user login to track favorite results and previously visited cities, and database integration in order to prevent repeat flights from displaying, to name only a few. 
 
+function displayEvents() {
+  var cityNameValue = $(this).data("value");
+  for (i = 0; i < whatsHappening.length; i++) {
+    $("#modal-body").append("<p>" + whatsHappening[i].title + "</p><p>" + whatsHappening[i].location + "</p><p>" + whatsHappening[i].startTime + "</p><p>" + whatsHappening[i].description + "</p><p>" + whatHappening[i].visit + "</p>");
+  }
+}

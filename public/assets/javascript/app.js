@@ -1,8 +1,8 @@
 $(document).ready(function() {
 var whatsHappening = [];
 var filtered = [];
-var lat;
-var long;
+var lat = 29;
+var long = -95;
 var nextSat = moment().endOf("week");
 var nextSun = moment(nextSat).add(1, "d");
 var startD;
@@ -14,22 +14,17 @@ var lowHighPrices = [];
 //Button event listener
 $(document).on("click", "#searchBtn", runButton);
 $("#nextBtn").on("click", runNextWeekButton);
-$(document).on("click", ".eventsBtn", runEventsBtn);
 //Function for button action
 function runButton() {
   showTable();
   console.log("runButton works.")
   $("#table-content").empty();
   findDate();
-  // getLocation();
-  findLocale();
-  //Add format of returned data 
 }
 function runNextWeekButton() {
   // showTable();
   $("#table-content").empty();
   findNextDate();
-  // getLocation();
   findLocale();
 }
 // Show the divs for flight results once submit button is clicked.
@@ -136,7 +131,9 @@ function findDate() {
     filtered.push(object);
   }
   for (i=0; i < filtered.length; i++) {
-    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td class='hideThis'>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td class='hideThis'>$" + filtered[i].price + "</td><td class='hideThis'>" + filtered[i].airOut + "</td><td class='hideThis'>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td class='hideThis'>" + filtered[i].airIn + "<td class='events'><button type='button' class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
+    startD = moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY");
+    endD = moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY");
+    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td class='hideThis'>" + startD + "</td><td class='hideThis'>$" + filtered[i].price + "</td><td class='hideThis'>" + filtered[i].airOut + "</td><td class='hideThis'>" + endD + "</td><td class='hideThis'>" + filtered[i].airIn + "<td class='events'><button type='button' data-Stime='" + startD + "' data-eTime='" + endD + "' class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
   }
   }).fail(function(error){
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
@@ -165,41 +162,41 @@ function getLocation() {
   }
 }
 //API call to Eventfull and assigning the call to eventsBtn class.
-function runEventsBtn() {
-  nameOfCity = $(this).data("value");
-  console.log(nameOfCity);
-  loadModal();
-  findEvents();
-}
+// function runEventsBtn() {
+//   nameOfCity = $(this).data("value");
+//   console.log(nameOfCity);
+//   loadModal();
+//   findEvents();
+// }
 
-function loadModal() {
-// Get the modal
-var modal = document.getElementById('myModal');
+// function loadModal() {
+// // Get the modal
+// var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("eventsBtn");
+// // Get the button that opens the modal
+// var btn = document.getElementById("eventsBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+// $(".modal-content").append("This is sample text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente asperiores velit atque dolor, voluptatem, vitae ducimus delectus facilis repellendus expedita, incidunt itaque neque natus. In ducimus sed deserunt illo, cumque!")
+// // When the user clicks the button, open the modal 
 
-// When the user clicks the button, open the modal 
-
-  modal.style.display = "block";
+//   modal.style.display = "block";
 
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 
-}
+// }
 
 // function findEvents() {
    
