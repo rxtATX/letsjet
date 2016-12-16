@@ -37,7 +37,7 @@ function findEvents() {
   console.log(oArgs);
   //Kind of like the ajax for this API
   //The function stops here and says EVDB is not defined.
-  $.ajax({url: "http://api.eventful.com/json/events/search?app_key=WLzwCkPfBxvFrMHm&&location=houston", method: 'GET'
+  $.ajax({url: "https://api.eventful.com/json/events/search?app_key=WLzwCkPfBxvFrMHm&&location=houston", method: 'GET'
     }).done(function(oData){
       var response = oData.events;
 
