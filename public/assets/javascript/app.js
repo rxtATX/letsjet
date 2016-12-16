@@ -30,31 +30,19 @@ function runNextWeekButton() {
   findLocale();
 }
 // Show the divs for flight results once submit button is clicked.
-$("#homeBtn").click(function(){
-  $('header').show();
-  $("#flightResults").hide();
-})
 function showTable() {
   $("#flightResults").show();
   $('header').hide();
-};
-
-  $(".event").on("click", function(){
-    var cityName = $(this).data('value');//might change value to what ever rachel decideds the data is going to be
-
-    for(var i = 0; i<whatsHappening.length; i++){
-      if(whatsHappening[i].location==cityName){
-        $(".modal-body").append("<p>" + whatsHappening[i].title + " " + whatsHappening[i].location + " " + whatsHappening[i].startTime + "</p><p>" + whatsHappening[i].description "</p><p>" + whatsHappening[i].visit + "</p>");
-      }
-    }
-
+  $("#homeBtn").click(function(){
+  $('header').show();
+  $("#flightResults").hide();
   });
-
+}
 //Calculates the date based on when the button is pressed.
 function findNextDate() {
   var futureSat = moment(nextSat).add(7, "d");
   var futureSun = moment(nextSun).add(7, "d");
-  startD = moment(futureSat).format("YYYYMMDD");
+  futureSat = moment(futureSat).format("YYYYMMDD");
   futureSun = moment(futureSun).format("YYYYMMDD");
   startD = moment(futureSat).format("YYYY-MM-DD");
   endD = moment(futureSun).format("YYYY-MM-DD");
@@ -144,54 +132,7 @@ function findLocale(position) {
   }
   for (i=0; i < filtered.length; i++) {
     $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td id='events'><button class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
-    console.log(filtered);
   }
-    
-    for(var i = 0; i<filtered.length; i++){
-      var startD = moment(nextSat).format("YYYYMMDD");
-      var endD = moment(nextSun).format("YYYYMMDD");
-
-      var oArgs = {
-        app_key: "WLzwCkPfBxvFrMHm",
-        q: nameOfCity,
-        locaction: nameOfCity,
-        "date": startD + "00-" + endD + "00",
-        page_size: 6,
-        sort_order: "popularity",
-      };
-
-      EVDB.API.call("/events/search", oArgs, function(oData) {
-
-      var response = oData.events;
-      
-      function eventsDetails() {
-        for (i = 0; i < oData.events.event.length; i++) {
-          if(repsonse.event[i].description != null){
-            var object = {
-              title: response.event[i].title,
-              location: response.event[i].venue_name,
-              startTime: response.event[i].start_time,
-              description: response.event[i].description,
-              visit: response.event[i].venue_url
-            }
-          } else {
-            var object = {
-              title: response.event[i].title,
-              location: response.event[i].venue_name,
-              startTime: response.event[i].start_time,
-              visit: response.event[i].venue_url
-            }
-          }
-
-          whatsHappening.push(object);
-        }
-      }
-
-      eventsDetails();
-      });
-    }
-//******************************************
-
   }).fail(function(error){
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
   });
@@ -221,40 +162,47 @@ function getLocation() {
 $(".eventsBtn").on("click", runEventsBtn);
 //API call to Eventfull and assigning the call to eventsBtn class.
 function runEventsBtn() {
-  findEvents();
+  nameOfCity = $(this).data("value");
+  console.log(nameOfCity);
   loadModal();
+  findEvents();
 }
-// function findEvents() {
-//    //Arguments that will need to run API.
-//    var oArgs = {
-//       app_key: "WLzwCkPfBxvFrMHm",
-//       q: nameOfCity,
-//       locaction: nameOfCity,
-//       "date": startD + "00-" + endD + "00",
-//       page_size: 6,
-//       sort_order: "popularity",
-//    };
+function findEvents() {
+   //Arguments that will need to run API.
+   var oArgs = {
+      app_key: "WLzwCkPfBxvFrMHm",
+      q: nameOfCity,
+      locaction: nameOfCity,
+      "date": startD + "00-" + endD + "00",
+      page_size: 6,
+      sort_order: "popularity",
+   };
 
-//  EVDB.API.call("/events/search", oArgs, function(oData) {
-//   var response = oData.events;
-//   // console.log(oData.events);
+ EVDB.API.call("/events/search", oArgs, function(oData) {
+  var response = oData.events;
+  // console.log(oData.events);
   
-//   function eventsDetails() {
-//     for (i = 0; i < oData.events.event.length; i++) {
-//       console.log(response.event[i].title);
-//       console.log("Location: " + response.event[i].venue_name);
-//       console.log("Be there by: " + response.event[i].start_time);
-//       if (response.event[i].description !== null) {
-//       console.log(response.event[i].description);
-//       }
-//       console.log("visit: " + response.event[i].venue_url);
-//       console.log("-----------");
-//     }
-//   }
+  function eventsDetails() {
+    for (i = 0; i < oData.events.event.length; i++) {
+      if (response.event[i].description !== null) {
+        $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
+      } else {
+        $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
+      }
+      // console.log(response.event[i].title);
+      // console.log("Location: " + response.event[i].venue_name);
+      // console.log("Be there by: " + response.event[i].start_time);
 
-//   eventsDetails();
-//   });
-// }
+      // console.log(response.event[i].description);
+    
+      // console.log("visit: " + response.event[i].venue_url);
+      // console.log("-----------");
+    }
+  }
+
+  eventsDetails();
+  });
+}
 
 function loadModal() {
 // Get the modal
