@@ -13,9 +13,11 @@ var lowHighPrices = [];
 //Button event listener
 $(document).on("click", "#searchBtn", runButton);
 $("#nextBtn").on("click", runNextWeekButton);
+$(document).on("click", ".eventsBtn", runEventsBtn);
 //Function for button action
 function runButton() {
   showTable();
+  console.log("runButton works.")
   $("#table-content").empty();
   findDate();
   getLocation();
@@ -23,6 +25,7 @@ function runButton() {
   //Add format of returned data 
 }
 function runNextWeekButton() {
+  console.log("runNextWeekButton works.")
   showTable();
   $("#table-content").empty();
   findNextDate();
@@ -131,7 +134,7 @@ function findLocale(position) {
     filtered.push(object);
   }
   for (i=0; i < filtered.length; i++) {
-    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td id='events'><button class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
+    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td class='events'><button type='button' class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
   }
   }).fail(function(error){
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
@@ -159,14 +162,6 @@ function getLocation() {
   }
 }
 //Assigning any click on an eventsBtn class to run findEvents function.
-$(".eventsBtn").on("click", runEventsBtn);
-//API call to Eventfull and assigning the call to eventsBtn class.
-function runEventsBtn() {
-  nameOfCity = $(this).data("value");
-  console.log(nameOfCity);
-  loadModal();
-  findEvents();
-}
 function findEvents() {
    //Arguments that will need to run API.
    var oArgs = {
@@ -202,6 +197,13 @@ function findEvents() {
 
   eventsDetails();
   });
+}
+//API call to Eventfull and assigning the call to eventsBtn class.
+function runEventsBtn() {
+  nameOfCity = $(this).data("value");
+  console.log(nameOfCity);
+  loadModal();
+  findEvents();
 }
 
 function loadModal() {
