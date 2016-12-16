@@ -44,7 +44,7 @@ function showTable() {
 
     for(var i = 0; i<whatsHappening.length; i++){
       if(whatsHappening[i].location==cityName){
-        $(".modal-body").append(something about table and the event information);
+        $(".modal-body").append("<p>" + whatsHappening[i].title + " " + whatsHappening[i].location + " " + whatsHappening[i].startTime + "</p><p>" + whatsHappening[i].description "</p><p>" + whatsHappening[i].visit + "</p>");
       }
     }
 
@@ -224,37 +224,37 @@ function runEventsBtn() {
   findEvents();
   loadModal();
 }
-function findEvents() {
-   //Arguments that will need to run API.
-   var oArgs = {
-      app_key: "WLzwCkPfBxvFrMHm",
-      q: nameOfCity,
-      locaction: nameOfCity,
-      "date": startD + "00-" + endD + "00",
-      page_size: 6,
-      sort_order: "popularity",
-   };
+// function findEvents() {
+//    //Arguments that will need to run API.
+//    var oArgs = {
+//       app_key: "WLzwCkPfBxvFrMHm",
+//       q: nameOfCity,
+//       locaction: nameOfCity,
+//       "date": startD + "00-" + endD + "00",
+//       page_size: 6,
+//       sort_order: "popularity",
+//    };
 
- EVDB.API.call("/events/search", oArgs, function(oData) {
-  var response = oData.events;
-  // console.log(oData.events);
+//  EVDB.API.call("/events/search", oArgs, function(oData) {
+//   var response = oData.events;
+//   // console.log(oData.events);
   
-  function eventsDetails() {
-    for (i = 0; i < oData.events.event.length; i++) {
-      console.log(response.event[i].title);
-      console.log("Location: " + response.event[i].venue_name);
-      console.log("Be there by: " + response.event[i].start_time);
-      if (response.event[i].description !== null) {
-      console.log(response.event[i].description);
-      }
-      console.log("visit: " + response.event[i].venue_url);
-      console.log("-----------");
-    }
-  }
+//   function eventsDetails() {
+//     for (i = 0; i < oData.events.event.length; i++) {
+//       console.log(response.event[i].title);
+//       console.log("Location: " + response.event[i].venue_name);
+//       console.log("Be there by: " + response.event[i].start_time);
+//       if (response.event[i].description !== null) {
+//       console.log(response.event[i].description);
+//       }
+//       console.log("visit: " + response.event[i].venue_url);
+//       console.log("-----------");
+//     }
+//   }
 
-  eventsDetails();
-  });
-}
+//   eventsDetails();
+//   });
+// }
 
 function loadModal() {
 // Get the modal
