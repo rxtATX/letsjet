@@ -142,6 +142,7 @@ function findDate() {
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
   });
 }
+
 //After city id is pulled, runs through "Places" to identify and convert into words.
 function findCityName(data, cityId, price) {//Have to pass new variables here to add...
   var cityName = "Not found.";
@@ -161,32 +162,6 @@ function getLocation() {
       navigator.geolocation.getCurrentPosition(findLocale);
   } else { 
       var log = "Geolocation is not supported by this browser.";
-  }
-}
-//Assigning any click on an eventsBtn class to run findEvents function.
-function findEvents() {
-  //Arguments that will need to run API.
-  var oArgs = {
-    app_key: "WLzwCkPfBxvFrMHm",
-    q: nameOfCity,
-    locaction: nameOfCity,
-    "date": startD + "00-" + endD + "00",
-    page_size: 6,
-    sort_order: "popularity",
-  };
-  console.log(oArgs);
-  EVDB.API.call("/events/search", oArgs, function(oData) {
-    var response = oData.events;
-  }); //End of API call.
-  eventsDetails();
-} //End of findEvents();
-function eventsDetails() {
-  for (i = 0; i < oData.events.event.length; i++) {
-    if (response.event[i].description !== null) {
-      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
-    } else {
-      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
-    }
   }
 }
 //API call to Eventfull and assigning the call to eventsBtn class.
@@ -226,4 +201,49 @@ window.onclick = function(event) {
 
 }
 
+// function findEvents() {
+   
+//    var oArgs = {
+
+//       app_key: "WLzwCkPfBxvFrMHm",
+
+//       q: nameOfCity,
+
+//       location: nameOfCity,
+
+//       "date": startD + "00-" + endD + "00",
+      
+//       page_size: 6,
+
+//       sort_order: "popularity",
+
+//    };
+
+//    EVDB.API.call("/events/search", oArgs, function(oData) {
+//     var response = oData.events;
+
+//     console.log(oData.events);
+    
+//     function eventsDetails() {
+//       for (i = 0; i < oData.events.event.length; i++) {
+//     if (response.event[i].description !== null) {
+//       $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
+//     } else {
+//       $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
+//     }
+//         // console.log(response.event[i].title);
+//         // console.log("Location: " + response.event[i].venue_name);
+//         // console.log("Be there by: " + response.event[i].start_time);
+//         // if (response.event[i].description != null) {
+//         // console.log(response.event[i].description);
+//         // }
+//         // console.log("visit: " + response.event[i].venue_url);
+//         // console.log("-----------");
+//       }
+//     }
+
+//     eventsDetails();
+//     });
+
+// }
 });
