@@ -24,7 +24,7 @@ h3 {
   font-family: 'Anton', cursive;
   letter-spacing: 1px;
   font-weight: bolder;
-  color: #d80a0a;
+  color: #18305b;
   font-size: 40px;
   text-shadow: 
   -1px -1px 0 #fff, 
@@ -142,7 +142,7 @@ p {
 }
 .content-section {
   padding-top: 70px !important;
-  padding-bottom: 600px;
+  padding-bottom: 100px;
 }
 .download-section {
   width: 100%;
@@ -263,3 +263,16 @@ p {
     margin-left: 6px;
   }
 }
+.table-responsive {
+  font-size: 16px;
+}
+tr:nth-child(even) {
+    background-color: #6f6f70;
+}
+th {
+  background-color: #6284ba;
+}
+
+
+
+
