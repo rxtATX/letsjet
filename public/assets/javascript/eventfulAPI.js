@@ -12,11 +12,12 @@ function runEventsBtn() {
   endTripTime = moment(startTripTime).add(1, "d");
   endTripTime = moment(endTripTime).format("YYYYMMDD");
   whereYouGo = $(this).data("value");
+  console.log("Run events button: " + startTripTime + "," + endTripTime);
+  console.log(whereYouGo);
   // loadModal();
   findEvents();
   //These console.logs do not fire for some reason.
-  console.log("Run events button: " + startTripTime + "," + endTripTime);
-  console.log(whereYouGo);
+
 }
 
 function findEvents() {
@@ -36,11 +37,17 @@ function findEvents() {
   console.log(oArgs);
   //Kind of like the ajax for this API
   //The function stops here and says EVDB is not defined.
-  EVDB.API.call("/events/search", oArgs, function(oData) {
-  var response = oData.events;
+  $.ajax({url: "http://api.eventful.com/json/events/search?app_key=WLzwCkPfBxvFrMHm&&location=houston", method: 'GET'
+    }).done(function(oData){
+      var response = oData.events;
 
-  eventsDetails();
-  });
+      eventsDetails();
+    });
+  // EVDB.API.call("/events/search", oArgs, function(oData) {
+  // var response = oData.events;
+
+  // eventsDetails();
+  // });
 }
 //Documentation to pull pertinent info and display it to the modal.
 function eventsDetails() {
