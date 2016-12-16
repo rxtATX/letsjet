@@ -30,14 +30,26 @@ function runNextWeekButton() {
   findLocale();
 }
 // Show the divs for flight results once submit button is clicked.
+$("#homeBtn").click(function(){
+  $('header').show();
+  $("#flightResults").hide();
+})
 function showTable() {
   $("#flightResults").show();
   $('header').hide();
-  $("#homeBtn").click(function(){
-  $('header').show();
-  $("#flightResults").hide();
+};
+
+  $(".event").on("click", function(){
+    var cityName = $(this).data('value');//might change value to what ever rachel decideds the data is going to be
+
+    for(var i = 0; i<whatsHappening.length; i++){
+      if(whatsHappening[i].location==cityName){
+        $(".modal-body").append(something about table and the event information);
+      }
+    }
+
   });
-}
+
 //Calculates the date based on when the button is pressed.
 function findNextDate() {
   var futureSat = moment(nextSat).add(7, "d");
@@ -134,6 +146,52 @@ function findLocale(position) {
     $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td id='events'><button class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
     console.log(filtered);
   }
+    
+    for(var i = 0; i<filtered.length; i++){
+      var startD = moment(nextSat).format("YYYYMMDD");
+      var endD = moment(nextSun).format("YYYYMMDD");
+
+      var oArgs = {
+        app_key: "WLzwCkPfBxvFrMHm",
+        q: nameOfCity,
+        locaction: nameOfCity,
+        "date": startD + "00-" + endD + "00",
+        page_size: 6,
+        sort_order: "popularity",
+      };
+
+      EVDB.API.call("/events/search", oArgs, function(oData) {
+
+      var response = oData.events;
+      
+      function eventsDetails() {
+        for (i = 0; i < oData.events.event.length; i++) {
+          if(repsonse.event[i].description != null){
+            var object = {
+              title: response.event[i].title,
+              location: response.event[i].venue_name,
+              startTime: response.event[i].start_time,
+              description: response.event[i].description,
+              visit: response.event[i].venue_url
+            }
+          } else {
+            var object = {
+              title: response.event[i].title,
+              location: response.event[i].venue_name,
+              startTime: response.event[i].start_time,
+              visit: response.event[i].venue_url
+            }
+          }
+
+          whatsHappening.push(object);
+        }
+      }
+
+      eventsDetails();
+      });
+    }
+//******************************************
+
   }).fail(function(error){
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
   });
