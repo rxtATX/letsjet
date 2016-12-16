@@ -136,7 +136,7 @@ function findDate() {
     filtered.push(object);
   }
   for (i=0; i < filtered.length; i++) {
-    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td class='events'><button type='button' class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
+    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td class='hideThis'>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td class='hideThis'>$" + filtered[i].price + "</td><td class='hideThis'>" + filtered[i].airOut + "</td><td class='hideThis'>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td class='hideThis'>" + filtered[i].airIn + "<td class='events'><button type='button' class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
   }
   }).fail(function(error){
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
