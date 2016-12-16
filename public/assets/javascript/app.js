@@ -7,43 +7,49 @@ var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
 var nameOfCity;
+var prices = 0;
+var quoteNum;
+var lowHighPrices = [];
 //Button event listener
 $(document).on("click", "#searchBtn", runButton);
+$("#nextBtn").on("click", runNextWeekButton);
 //Function for button action
 function runButton() {
   showTable();
-  emptyTable();
+  $("#table-content").empty();
   findDate();
   getLocation();
   findLocale();
   //Add format of returned data 
 }
+function runNextWeekButton() {
+  showTable();
+  $("#table-content").empty();
+  findNextDate();
+  getLocation();
+  findLocale();
+}
 // Show the divs for flight results once submit button is clicked.
 function showTable() {
-  // $("'html,body'").animate({
-  //   scrollTop: $("#flightResults").offset().top},
-  //   'slow'); // slow page scroll function, but does not work at the moment.
   $("#flightResults").show();
-  // Hide and show home screen.
   $('header').hide();
   $("#homeBtn").click(function(){
-    $('header').show();
-    $("#flightResults").hide();
+  $('header').show();
+  $("#flightResults").hide();
   });
 }
-//Clears table of previous search values.
-function emptyTable() {
-  $("#flight-destination").empty();
-  $("#flight-airline").empty();
-  $("#flight-outbound").empty();
-  $("#flight-inbound").empty();
-  $("#flight-cost").empty();
-}
 //Calculates the date based on when the button is pressed.
+function findNextDate() {
+  var futureSat = moment(nextSat).add(7, "d");
+  var futureSun = moment(nextSun).add(7, "d");
+  startD = moment(futureSat).format("YYYYMMDD");
+  futureSun = moment(futureSun).format("YYYYMMDD");
+  startD = moment(futureSat).format("YYYY-MM-DD");
+  endD = moment(futureSun).format("YYYY-MM-DD");
+}
 function findDate() {
   startD = moment(nextSat).format("YYYY-MM-DD");
   endD = moment(nextSun).format("YYYY-MM-DD");
-  console.log("FROM: " + startD + " - TO: " + endD);
 }
 //Feeds in lat and long values from getLocation()
 function findLocale(position) {
@@ -55,18 +61,13 @@ function findLocale(position) {
     lat = 29;
     long = -95;
   // }
-  console.log("LAT: " + lat + "/LONG:" + long);
   //AJAX call for SkyScanner API
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
-    console.log(response); //JSON OBJECT
    //Loops through all the responses
    $.each(response.Quotes, function (key, value) {
       findCityName(response.Places, value.OutboundLeg.DestinationId, value.MinPrice);
     });
-    //Dan's contribution.
-  var prices = 0;
-  var quoteNum;
-  var lowHighPrices = [];
+
   //grabing all the prices and quoteID into a 2d array so we can easily find lowest to highest price
   for(var i = 0; i<response.Quotes.length ; i++){
     prices = response.Quotes[i].MinPrice;
@@ -127,30 +128,24 @@ function findLocale(position) {
       airIn: airInHold,
       price: prices
     };
-
     filtered.push(object);
   }
-  //bow chica wow wow
-  console.log(filtered);
   for (i=0; i < filtered.length; i++) {
-    $("#table-content").append("<tr><td>"+ filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td id='events'><button class='btn btn-custom' id='eventsBtn'>Click for events!</button></td></tr>");
+    $("#table-content").append("<tr><td>" + filtered[i].destination + "</td><td>" + moment(filtered[i].dateOut.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>$" + filtered[i].price + "</td><td>" + filtered[i].airOut + "</td><td>" + moment(filtered[i].dateIn.substring(0, 10)).format("MM/DD/YYYY") + "</td><td>" + filtered[i].airIn + "<td id='events'><button class='btn btn-custom eventsBtn' data-value='" + filtered[i].destination.substring(0, filtered[i].destination.indexOf(",")) + "'>Click for events!</button></td></tr>");
+    console.log(filtered);
   }
   }).fail(function(error){
-    console.log(error);
     $('.console').html("<h1>Ooops! Something went wrong, check the console!</h1>");
   });
 }
 //After city id is pulled, runs through "Places" to identify and convert into words.
 function findCityName(data, cityId, price) {//Have to pass new variables here to add...
-  console.log("my city id is: " + cityId);
   var cityName = "Not found.";
   $.each(data, function(key, value){
     var arrID = Number(value.PlaceId);
     var mycID = Number(cityId);
     if (arrID === mycID) {
     var nameOfCity = value.Name;
-      // var flight = '<li><a href="#">' + nameOfCity + ' $' + price + '</a></li>'; //Add to here.
-      // $('#myFlights').append(flight);
     }
   }, function(){
     return cityName;  
@@ -162,12 +157,15 @@ function getLocation() {
       navigator.geolocation.getCurrentPosition(findLocale);
   } else { 
       var log = "Geolocation is not supported by this browser.";
-      console.log(log);
   }
 }
 //Assigning any click on an eventsBtn class to run findEvents function.
-$(".eventsBtn").on("click", findEvents);
+$(".eventsBtn").on("click", runEventsBtn);
 //API call to Eventfull and assigning the call to eventsBtn class.
+function runEventsBtn() {
+  findEvents();
+  loadModal();
+}
 function findEvents() {
    //Arguments that will need to run API.
    var oArgs = {
@@ -198,6 +196,34 @@ function findEvents() {
 
   eventsDetails();
   });
+}
+
+function loadModal() {
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("eventsBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+
+  modal.style.display = "block";
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 }
 
