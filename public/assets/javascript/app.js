@@ -174,6 +174,7 @@ function findEvents() {
     page_size: 6,
     sort_order: "popularity",
   };
+  console.log(oArgs);
   EVDB.API.call("/events/search", oArgs, function(oData) {
     var response = oData.events;
   }); //End of API call.
