@@ -12,7 +12,7 @@ function runEventsBtn() {
   endTripTime = moment(startTripTime).add(1, "d");
   endTripTime = moment(endTripTime).format("YYYYMMDD");
   whereYouGo = $(this).data("value");
-  // loadModal();
+  loadModal();
   findEvents();
   //These console.logs do not fire for some reason.
   console.log("Run events button: " + startTripTime + "," + endTripTime);
@@ -39,18 +39,18 @@ function findEvents() {
   EVDB.API.call("/events/search", oArgs, function(oData) {
   var response = oData.events;
 
-  eventsDetails();
+  eventsDetails(response);
   });
-}
 //Documentation to pull pertinent info and display it to the modal.
-function eventsDetails() {
-  for (i = 0; i < oData.events.event.length; i++) {
+function eventsDetails(response) {
+  for (i = 0; i < response.event.length; i++) {
     if (response.event[i].description !== null) {
-      $("#modal-content").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
+      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
     } else {
-      $("#modal-content").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
+      $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
     }
   }
+}
 }
 //The modal function designed by Tony.
 //This works with sample text, but not with the eventsDetails function.

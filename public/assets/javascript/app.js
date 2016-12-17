@@ -84,8 +84,8 @@ function findDate() {
       i=-1;
     }
   }
-  //removing everything except for the 10 cheapest flights
-  lowHighPrices = lowHighPrices.splice(0, 10);
+  //removing everything except for the 15 cheapest flights
+  lowHighPrices = lowHighPrices.splice(0, 15);
   console.log(lowHighPrices.length);
 
   var destinationHold = "";
@@ -93,7 +93,7 @@ function findDate() {
   var airInHold = "";
   var dateOutHold = "";
   var dateInHold = "";
-  //looping through the top 10 to get the other information from the URL and pushing it into the filtered leaving with a filtered array with the top 10 flights/destination/airline/dates
+  //looping through the top 15 to get the other information from the URL and pushing it into the filtered leaving with a filtered array with the top 15 flights/destination/airline/dates
   for(i = 0; i<lowHighPrices.length; i++){
     quoteNum = lowHighPrices[i][1]-1;
     dateOutHold = response.Quotes[quoteNum].OutboundLeg.DepartureDate;

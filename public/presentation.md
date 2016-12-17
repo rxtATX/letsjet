@@ -1,8 +1,8 @@
 Imagine: the weekend is fast approaching. Do you have any plans this weekend? No? When's the last time you went somewhere without months of planning? You need some fodder for the water cooler come Monday.
 
-Here's what you'll do. Open the LetJet app. Press the single button on the homepage, and watch what happens---You're directed towards up to 10 fascinating adventures without having to spend all that time inputting the same information you've entered a million times before.
+Here's what you'll do. Open the LetJet app. Press the single button on the homepage, and watch what happens---You're directed towards up to 6 fascinating adventures without having to spend all that time inputting the same information you've entered a million times before.
 
-Displayed for you is a plethora of information about the flights from which you may choose, all conveniently sorted into the 10 least expensive options out there pulled from thousands!
+Displayed for you is a plethora of information about the flights from which you may choose, all conveniently sorted into the 15 least expensive options out there pulled from thousands!
 
 But wait, there's more!
 
