@@ -22,6 +22,7 @@ function runButton() {
   findDate();
 }
 function runNextWeekButton() {
+  $("#nextBtn").hide();
   showTable();
   filtered = [];
   $("#table-content").empty();
@@ -33,6 +34,7 @@ function showTable() {
   $("#flightResults").show();
   $('header').hide();
   $("#homeBtn").click(function(){
+  $("#nextBtn").show();
   $('header').show();
   $("#flightResults").hide();
   });
