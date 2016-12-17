@@ -4,7 +4,6 @@ body {
   font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
   background-color: black;
-  position: relative;
 }
 html {
   width: 100%;
@@ -148,7 +147,7 @@ p {
 }
 .content-section {
   padding-top: 70px !important;
-  padding-bottom: 100px;
+  margin-bottom: 100px;
 }
 .download-section {
   width: 100%;
@@ -318,8 +317,8 @@ th {
     font-size: 10px !important;
   }
 }
-#footer {
-  position: absolute;
+/*#footer {
+  clear: both;
   right: 0;
   bottom: 0;
   left: 0;
@@ -327,11 +326,19 @@ th {
   text-align: center;
 }
 #footerText {
+  position: absolute;
   color: black;
   font-size: 12px;
   margin-bottom: 10px;
   margin-top: 5px;
 }
-
-
-
+*/
+/*
+footer{
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  position: bottom;
+  margin-top: -3rem;
+}*/
