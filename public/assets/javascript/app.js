@@ -23,6 +23,7 @@ function runButton() {
 }
 function runNextWeekButton() {
   showTable();
+  filtered = [];
   $("#table-content").empty();
   findNextDate();
   findLocale();
