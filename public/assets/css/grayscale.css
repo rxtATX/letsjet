@@ -24,7 +24,7 @@ h3 {
   font-family: 'Anton', cursive;
   letter-spacing: 1px;
   font-weight: bolder;
-  color: #18305b;
+  color: #4b6ca0;
   font-size: 40px;
   text-shadow: 
   -1px -1px 0 #fff, 
@@ -62,23 +62,28 @@ p {
   font-family: 'Fugaz One', cursive;
   font-size: 40px;
   color: #18305b;
+  margin-bottom: 100px;
+  text-shadow: 
+  -1px -1px 0 #fff, 
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
 }
 .intro .intro-body .intro-text {
   font-size: 18px;
 }
 #btn-plane {
   float: left;
-  font-size: 70px;
-  margin-left: 3px;
+  font-size: 90px;
+  margin-left: 4px;
   margin-top: 8px;
   color: white;
 }
 .btn-circle {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
   margin-bottom: -10px;
-  margin-top: 10px;
   border: 4px solid white;
   border-radius: 100% !important;
   color: white;
@@ -173,6 +178,9 @@ p {
   .brand-heading {
     font-size: 90px !important;
   }
+  h3 {
+    font-size: 30px;
+  }
   .btn-circle {
     width: 100px;
     height: 100px;
@@ -181,6 +189,24 @@ p {
     float: left;
     font-size: 70px;
     margin-left: 5px;
+  }
+  th:nth-child(even) {
+    display: none;
+  }
+  th:nth-child(5) {
+    display: none;
+  }
+  th:nth-child(2) {
+    display: block;
+  }
+  td:nth-child(even) {
+    display: none;
+  }
+  td:nth-child(5) {
+    display: none;
+  }
+  td:nth-child(2) {
+    display: block;
   }
 }
 @media (max-width: 640px) {
@@ -191,22 +217,31 @@ p {
     font-size: 75px !important;
   }
   h2 {
-    font-size: 14px;
-  }
-  h3 { 
     font-size: 24px;
   }
-  p {
-    font-size: 10px;
+  h3 { 
+    font-size: 26px;
   }
   .btn-circle {
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
   }
   #btn-plane {
     float: left;
-    font-size: 80px;
-    margin-left: 6px;
+    font-size: 60px;
+    margin-left: 5px;
+  }
+  th:nth-child(even) {
+    display: none;
+  }
+  th:nth-child(5) {
+    display: none;
+  }
+  td:nth-child(even) {
+    display: none;
+  }
+  td:nth-child(5) {
+    display: none;
   }
 }
 @media (max-width: 480px) {
@@ -215,34 +250,7 @@ p {
   }
   .brand-heading {
     font-size: 75px !important;
-  }
-  h2 {
-    font-size: 14px;
-  }
-  h3 { 
-    font-size: 24px;
-  }
-  p {
-    font-size: 10px;
-  }
-  .btn-circle {
-    width: 110px;
-    height: 110px;
-  }
-  #btn-plane {
-    float: left;
-    font-size: 80px;
-    margin-left: 6px;
-  }
-}
-@media (max-width: 375px) {
-  .intro {
-    height: 100%;
-  }
-  .brand-heading {
-    font-size: 75px !important;
-    padding-top: 150px;
-    padding-bottom: 30px;
+    padding-top: 70px;
   }
   h2 {
     font-size: 20px;
@@ -271,10 +279,6 @@ p {
   #homeBtn {
     margin-left: -15px;
   }
-  #nextBtn {
-    float: right;
-    margin-right: -15px;
-  }
   .modal-header {
     padding-bottom: 0px !important;
   }
@@ -295,14 +299,22 @@ p {
     font-size: 10px !important;
   }
 }
+thead,
+th {
+	border: solid 1px #fff;
+	text-align: center;
+}
 .table-responsive {
-  font-size: 16px;
+  	font-size: 16px;
 }
 tr:nth-child(even) {
-    background-color: #6f6f70;
+	background-color: #6f6f70;
+}
+tr:nth-child(odd) {
+	background-color: #2a2b2d;
 }
 th {
-  background-color: #6284ba;
+  	background-color: #6284ba;
 }
 
 
