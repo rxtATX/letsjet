@@ -4,6 +4,7 @@ var filtered = [];
 var lat = 29;
 var long = -95;
 var nextSat = moment().endOf("week");
+var nextFri = moment(nextSat).subtract(1, "d");
 var nextSun = moment(nextSat).add(1, "d");
 var startD;
 var endD;
@@ -17,12 +18,11 @@ $("#nextBtn").on("click", runNextWeekButton);
 //Function for button action
 function runButton() {
   showTable();
-  console.log("runButton works.")
   $("#table-content").empty();
   findDate();
 }
 function runNextWeekButton() {
-  // showTable();
+  showTable();
   $("#table-content").empty();
   findNextDate();
   findLocale();
@@ -38,28 +38,27 @@ function showTable() {
 }
 //Calculates the date based on when the button is pressed.
 function findNextDate() {
-  var futureSat = moment(nextSat).add(7, "d");
+  var futureFri = moment(nextFri).add(7, "d");
+  // var futureSat = moment(nextSat).add(7, "d");
   var futureSun = moment(nextSun).add(7, "d");
-  futureSat = moment(futureSat).format("YYYYMMDD");
+  futureFri = moment(futureFri).format("YYYYMMDD");
+  // futureSat = moment(futureSat).format("YYYYMMDD");
   futureSun = moment(futureSun).format("YYYYMMDD");
-  startD = moment(futureSat).format("YYYY-MM-DD");
+  startD = moment(futureFri).format("YYYY-MM-DD");
   endD = moment(futureSun).format("YYYY-MM-DD");
 }
 function findDate() {
-  startD = moment(nextSat).format("YYYY-MM-DD");
+  startD = moment(nextFri).format("YYYY-MM-DD");
   endD = moment(nextSun).format("YYYY-MM-DD");
 }
 //Feeds in lat and long values from getLocation()
-// function findLocale(position) {
   function findLocale() {
-
-  //Client-side javascript ip address identify to locate
   // if (position.coords !== undefined) {
-  // lat = position.coords.latitude;
-  // long = position.coords.longitude;
+    // lat = position.coords.latitude;
+    // long = position.coords.longitude;
   // } else {
-    lat = 29;
-    long = -95;
+      lat = 29;
+      long = -95;
   // }
   //AJAX call for SkyScanner API
   $.ajax({url:"/api/skyscanner/US/en-us/" + lat + "," + long + "-latlong/anywhere/USD/" + startD + "/" + endD, method:"get"}).done(function(response){
@@ -86,7 +85,6 @@ function findDate() {
   }
   //removing everything except for the 15 cheapest flights
   lowHighPrices = lowHighPrices.splice(0, 15);
-  console.log(lowHighPrices.length);
 
   var destinationHold = "";
   var airOutHold = "";
@@ -147,7 +145,7 @@ function findCityName(data, cityId, price) {//Have to pass new variables here to
     var arrID = Number(value.PlaceId);
     var mycID = Number(cityId);
     if (arrID === mycID) {
-    var nameOfCity = value.Name;
+      var nameOfCity = value.Name;
     }
   }, function(){
     return cityName;  
@@ -161,86 +159,4 @@ function getLocation() {
       var log = "Geolocation is not supported by this browser.";
   }
 }
-//API call to Eventfull and assigning the call to eventsBtn class.
-// function runEventsBtn() {
-//   nameOfCity = $(this).data("value");
-//   console.log(nameOfCity);
-//   loadModal();
-//   findEvents();
-// }
-
-// function loadModal() {
-// // Get the modal
-// var modal = document.getElementById('myModal');
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("eventsBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-// $(".modal-content").append("This is sample text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente asperiores velit atque dolor, voluptatem, vitae ducimus delectus facilis repellendus expedita, incidunt itaque neque natus. In ducimus sed deserunt illo, cumque!")
-// // When the user clicks the button, open the modal 
-
-//   modal.style.display = "block";
-
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-// }
-
-// function findEvents() {
-   
-//    var oArgs = {
-
-//       app_key: "WLzwCkPfBxvFrMHm",
-
-//       q: nameOfCity,
-
-//       location: nameOfCity,
-
-//       "date": startD + "00-" + endD + "00",
-      
-//       page_size: 6,
-
-//       sort_order: "popularity",
-
-//    };
-
-//    EVDB.API.call("/events/search", oArgs, function(oData) {
-//     var response = oData.events;
-
-//     console.log(oData.events);
-    
-//     function eventsDetails() {
-//       for (i = 0; i < oData.events.event.length; i++) {
-//     if (response.event[i].description !== null) {
-//       $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].description + "</p><p>" + response.event[i].venue_url + "</p>")
-//     } else {
-//       $("#modal-body").append("<p>" + response.event[i].title + "</p><p>" + response.event[i].venue_name + "</p><p>" + response.event[i].start_time + "</p><p>" + response.event[i].venue_url + "</p>")
-//     }
-//         // console.log(response.event[i].title);
-//         // console.log("Location: " + response.event[i].venue_name);
-//         // console.log("Be there by: " + response.event[i].start_time);
-//         // if (response.event[i].description != null) {
-//         // console.log(response.event[i].description);
-//         // }
-//         // console.log("visit: " + response.event[i].venue_url);
-//         // console.log("-----------");
-//       }
-//     }
-
-//     eventsDetails();
-//     });
-
-// }
 });

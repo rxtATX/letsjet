@@ -4,7 +4,6 @@ var endTripTime;
 var whereYouGo;
 
 $(document).on("click", ".eventsBtn", runEventsBtn);
-
 //Pulls variables from app.js and reformat for EventfulAPI
 function runEventsBtn() {
   startTripTime = $(this).data("Stime");
@@ -14,13 +13,8 @@ function runEventsBtn() {
   whereYouGo = $(this).data("value");
   loadModal();
   findEvents();
-  //These console.logs do not fire for some reason.
-  console.log("Run events button: " + startTripTime + "," + endTripTime);
-  console.log(whereYouGo);
 }
-
 function findEvents() {
-
   //declare arguments for the API
   var oArgs = {
     app_key: "WLzwCkPfBxvFrMHm",
@@ -30,35 +24,23 @@ function findEvents() {
     page_size: 6,
     sort_order: "popularity",
   };
-  //These console logs do print out successfully
-  console.log("oArgs list: " + whereYouGo);
-  console.log(startTripTime + ", third: " + endTripTime);
-  console.log(oArgs);
   //Kind of like the ajax for this API
   //The function stops here and says EVDB is not defined.
   EVDB.API.call("/events/search", oArgs, function(oData) {
   var response = oData.events;
-  console.log(response);
 
   function eventsDetails(response) {
-     console.log(response.event.title);
-     console.log("Location: " + response.event.venue_name);
-     console.log("Be there by: " + response.event.start_time);
-     if (response.event.description != null) {
-     console.log(response.event.description);
-     }
-     console.log("visit: " + response.event.venue_url);
-     console.log("-----------");
-    if (response.event.description !== null) {
-      $("#modal-body").append("<p>" + response.event.title + " " + response.event.venue_name + " " + response.event.start_time + "</p><p class='description'>" + response.event.description + "</p><p>" + response.event.venue_url + "</p>")
-    } else {
-      $("#modal-body").append("<p>" + response.event.title + " " + response.event.venue_name + " " + response.event.start_time + "</p><p>" + response.event.venue_url + "</p>")
+    for (i = 0; i < response.event.length; i++) {
+      if (response.event.description !== null) {
+        $("#modal-body").append("<p>" + response.event[i].title + " " + response.event[i].venue_name + " " + response.event[i].start_time + "</p><p class='description'>" + response.event[i].description + "</p><p class='description'>" + response.event[i].venue_url + "</p>")
+      } else {
+        $("#modal-body").append("<p>" + response.event[i].title + " " + response.event[i].venue_name + " " + response.event[i].start_time + "</p><p class='description'>" + response.event[i].venue_url + "</p>")
+      }
     }
   }
   eventsDetails(response);
   });
 //Documentation to pull pertinent info and display it to the modal.
-console.log("EVDB is working");
 }
 //The modal function designed by Tony.
 //This works with sample text, but not with the eventsDetails function.
