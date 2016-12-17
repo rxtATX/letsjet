@@ -32,7 +32,7 @@ function findEvents() {
   function eventsDetails(response) {
     for (i = 0; i < response.event.length; i++) {
       if (response.event[i].description === null) {
-        $("#modal-body").append("<p class='title'>" + response.event[i].title + " " + response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm") + "</p><p><a class='description target='_blank' href='" + response.event[i].venue_url + "'>Click to visit webpage!</a></p>");
+        $("#modal-body").append("<p class='title'>" + response.event[i].title + " " + response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm") + "</p><p><a class='description' target='_blank' href='" + response.event[i].venue_url + "'>Click to visit webpage!</a></p>");
       } else {
         response.event[i].description = (response.event[i].description).substring(0, 1000) + "...";
         $("#modal-body").append("<p class='title'>" + response.event[i].title + " " + response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm") + "</p><p class='description'>" + response.event[i].description + "</p><p><a class='description' target='_blank' href='" + response.event[i].venue_url + "'>Click to visit webpage!</a></p>");
