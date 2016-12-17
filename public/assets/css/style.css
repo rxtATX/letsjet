@@ -95,7 +95,7 @@
   background-color: #2b67c6;
   font-family: "Oswald", Helvetica, Arial, sans-serif;
   color: white;
-  padding: -20px;
+/*  padding: -20px;*/
 }
 #eventsTitle {
   margin-bottom: -120px;
@@ -107,18 +107,18 @@
   max-height: calc(100vh - 210px);
   overflow-y: auto;
 }
-.modal-body-text{
+.modal-body-text {
   color: white;
   font-size: 12px;
   font-family: "Nunito Sans", times;
   text-shadow: none;
 }
 #myModal {
-  height: 500px !important;
-/*  overflow-y: auto;*/
+/*  height: 500px;
+*//*  overflow-y: auto;*/
 }
 .description,
-.title{
+.title {
   font-size: 16px;
   margin-left: 20px;
   margin-right: 20px;
@@ -126,9 +126,9 @@
 .mainTitle {
   font-weight: bold;
 }
-a .description{
+/*a .description{
   border-bottom: dotted 3px black;
-}
+}*/
 /* Add Animation */
 @-webkit-keyframes slideIn {
     from {bottom: -300px; opacity: 0} 
