@@ -107,7 +107,7 @@ $(document).ready(function () {
         }
       }
       //removing everything except for the 15 cheapest flights
-      lowHighPrices = lowHighPrices.splice(0, 15);
+      lowHighPrices = lowHighPrices.splice(0, 19);
 
       var destinationHold = "";
       var airOutHold = "";
@@ -115,41 +115,47 @@ $(document).ready(function () {
       var dateOutHold = "";
       var dateInHold = "";
       //looping through the top 15 to get the other information from the URL and pushing it into the filtered leaving with a filtered array with the top 15 flights/destination/airline/dates
-      for (i = 0; i < 9; i++) {
+      for (i = 0; i < lowHighPrices.length; i++) {
         quoteNum = lowHighPrices[i][1] - 1;
-        dateOutHold = response.Quotes[quoteNum].OutboundLeg.DepartureDate;
-        dateInHold = response.Quotes[quoteNum].InboundLeg.DepartureDate;
-        prices = response.Quotes[quoteNum].MinPrice;
+        console.log(response.Quotes[quoteNum])
+        if (response.Quotes[quoteNum].InboundLeg.CarrierIds.length !== 0) {
+          dateOutHold = response.Quotes[quoteNum].OutboundLeg.DepartureDate;
+          dateInHold = response.Quotes[quoteNum].InboundLeg.DepartureDate;
+          prices = response.Quotes[quoteNum].MinPrice;
 
-        destinationHold = response.Quotes[quoteNum].OutboundLeg.DestinationId;
-        airOutHold = response.Quotes[quoteNum].OutboundLeg.CarrierIds;
-        airInHold = response.Quotes[quoteNum].InboundLeg.CarrierIds;
-        //looping through the Places array in the URL to get the location information
-        for (var j = 0; j < response.Places.length; j++) {
-          if (destinationHold == response.Places[j].PlaceId) {
-            destinationHold = response.Places[j].CityName + ", " + response.Places[j].CountryName;
+          destinationHold = response.Quotes[quoteNum].OutboundLeg.DestinationId;
+          airOutHold = response.Quotes[quoteNum].OutboundLeg.CarrierIds;
+          airInHold = response.Quotes[quoteNum].InboundLeg.CarrierIds;
+          //looping through the Places array in the URL to get the location information
+
+          for (var j = 0; j < response.Places.length; j++) {
+            if (destinationHold == response.Places[j].PlaceId) {
+              destinationHold = response.Places[j].CityName + ", " + response.Places[j].CountryName;
+            }
+          }
+          //looping through the carriers array in the URL to get the airline name
+          for (j = 0; j < response.Carriers.length; j++) {
+            if (airInHold == response.Carriers[j].CarrierId) {
+              airInHold = response.Carriers[j].Name;
+            }
+
+            if (airOutHold == response.Carriers[j].CarrierId) {
+              airOutHold = response.Carriers[j].Name;
+            }
+          }
+          //creating an object so we can push it to the filtered array
+          var object = {
+            destination: destinationHold,
+            dateOut: dateOutHold,
+            airOut: airOutHold,
+            dateIn: dateInHold,
+            airIn: airInHold,
+            price: prices
+          };
+          if (filtered.length < 12) {
+            filtered.push(object);
           }
         }
-        //looping through the carriers array in the URL to get the airline name
-        for (j = 0; j < response.Carriers.length; j++) {
-          if (airInHold == response.Carriers[j].CarrierId) {
-            airInHold = response.Carriers[j].Name;
-          }
-
-          if (airOutHold == response.Carriers[j].CarrierId) {
-            airOutHold = response.Carriers[j].Name;
-          }
-        }
-        //creating an object so we can push it to the filtered array
-        var object = {
-          destination: destinationHold,
-          dateOut: dateOutHold,
-          airOut: airOutHold,
-          dateIn: dateInHold,
-          airIn: airInHold,
-          price: prices
-        };
-        filtered.push(object);
       }
       startD = moment(filtered[0].dateOut.substring(0, 10)).format("MM/DD/YYYY");
       endD = moment(filtered[0].dateIn.substring(0, 10)).format("MM/DD/YYYY");
