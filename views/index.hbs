@@ -1,85 +1,56 @@
-
-
 <!-- Intro Header -->
 <header class="intro" id="homePage">
   <div class="intro-body">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 class="brand-heading">LetsJET</h1>
-					     <a href="#flightResults"> 
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="brand-heading">LetsJET</h1>
+        <a href="#flightResults"> 
 						    <button class="btn btn-circle page-scroll" id="searchBtn"> 
 							   <i class="fa fa-plane animated" id="btn-plane"></i>
 						    </button> 
       				</a>
-      					<h3>PRESS TO JET!</h3>
-        </div>
+        <h3>PRESS TO JET!</h3>
+      </div>
     </div>
   </div>
 </header>
-
-<!-- Flight Results -->
-<div id="flightResults" class="container content-section" style="display:none;">                    
-    <div class="container">
-      		<div class="row">
-              	<div class="col-lg-8 col-lg-offset-2 text-center"">
-                  	<h2>Your Top Flight Results!</h2>
-              	</div>
-          </div>
-          <div class="row">                                
-              <div class="table-responsive"> <!-- Table still needs to be media friendly -->         
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Destination</th>	
-                        <th class="hideThis"><i class="fa fa-clock-o"></i> Departure Date</th>
-                        <th class="hideThis">Fare</th>
-                        <th class="hideThis"><i class="fa fa-plane"></i> Airline Out</th>
-                        <th class="hideThis"><i class="fa fa-clock-o"></i> Return Date</th>
-                        <th class="hideThis"><i class="fa fa-plane"></i> Airline In</th>
-                        <th>Events</th>
-                      </tr>
-                    </thead>
-                    <tbody id="table-content"></tbody>
-                  </table>
-              </div>
-      	  </div>
-      	  <div class="row">
-      		    <div class="col-lg-12 text-center">
-  				      <a href="#">
-                  <button class="btn btn-custom" id="homeBtn">Home</button>
-                </a>
-                <a href="#">
-                  <button class="btn btn-custom" id="nextBtn">Next Weekend</button>
-                </a>
-              </div>
-          </div>
-  	</div>
-</div>
-
-<!--Events Modal--> 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-	   <div class="modal-header">
- 		   <span class="close">&times;</span>
-  		    <h2 id="eventsTitle">Events</h2>
-	   </div>
-	   <div id="modal-body">
-  		<!-- <h3 class="modal-body-text">Description</h2>
-  		<p id="eventsDescription"> <p>
-  		<h3 class="modal-body-text">Links</h2>
-  		<p id="eventsLinks"> </p> -->
-	   </div>
+<second>
+  <div class="container-fluid">
+    <!-- Flight Results -->
+    <div class="row" id="secondHeader">
+      <a href="#"> 
+      <button class="btn btn-circle" id="homeBtn"> 
+        <i class="fa fa-home animated" id="btn-home"></i>
+      </button> 
+    </a>
+      <a href="#"> 
+      <button data-toggle="tooltip" title="Not what you're looking for? Check out next weekend." class="btn btn-circle" id="nextBtn"> 
+        <i class="fa fa-plane animated" id="btn-next"></i>
+      </button> 
+    </a>
+    </div>
   </div>
-</div>
+  <div id="flightResults" class="container-fluid content-section" style="display:none;">
+    <div id="response-content" class="text-center">
+    </div>
+  </div>
 
-<!--Footer-->
-<!-- <div class="row" id="footer">
+  <!--Events Modal-->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="eventsTitle">Events</h2>
+      </div>
+      <div id="modal-body">
+      </div>
+    </div>
+  </div>
+
+  <!--Footer-->
+  <!-- <div class="row" id="footer">
   <div class="col-lg-8 col-lg-offset-2 text-center">
-    <p id="footerText">Copyright &#169; 2016 Rachel Thim, Dan Tran, Tony Truong</p>
+    <p id="footerText">Copyright &#169; 2016 Rachel Thiim, Dan Tran, Tony Truong</p>
   </div>    
 </div> -->
-
-
-
-
-
+</second>
