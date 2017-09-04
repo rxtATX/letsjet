@@ -8,7 +8,7 @@ body {
 }
 #secondHeader > a {
   display:inline-block;
-  margin: 2% 0% 0% 4% !important;
+  margin: 2% 0% 0% 4%;
 }
 html {
   width: 100%;
@@ -30,7 +30,7 @@ h3 {
   letter-spacing: 1px;
   font-weight: bolder;
   color: #4b6ca0;
-  font-size: 40px;
+  font-size: 4rem;
   text-shadow: 
   -1px -1px 0 #fff, 
   1px -1px 0 #fff,
@@ -39,7 +39,7 @@ h3 {
 }
 p {
   margin: 0 0 25px;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 1.5;
   color: black;
 }
@@ -65,7 +65,7 @@ p {
 }
 .intro .intro-body .brand-heading {
   font-family: 'Fugaz One', cursive;
-  font-size: 40px;
+  font-size: 7vmax;
   color: #18305b;
   margin-bottom: 100px;
   text-shadow: 
@@ -75,12 +75,12 @@ p {
   1px 1px 0 #fff;
 }
 .intro .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 
 #btn-plane, #btn-next {
   float: left;
-  font-size: 90px;
+  font-size: 9rem;
   margin-left: 10px;
   margin-top: 10px;
   color: white;
@@ -126,9 +126,6 @@ p {
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear;
 }
-.brand-heading {
-  margin-top: -180px;
-}
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -169,7 +166,7 @@ p {
   }
 }
 /* .content-section {
-  padding-top: 70px !important;
+  padding-top: 70px;
   margin-bottom: 100px;
 } */
 .download-section {
@@ -185,7 +182,7 @@ p {
 }
 thead,
 th {
-	border: solid 1px black !important;
+	border: solid 1px black;
 	text-align: center;
 }
 
@@ -199,15 +196,19 @@ th {
 	background-color: #c1d9ff;
 }
 
-@media (min-width: 768px) {
+
+
+
+/* 
+ @media (max-width: 768px) {
   .intro {
     height: 100%;
   }
   .intro .intro-body .brand-heading {
-    font-size: 110px;
+    font-size: 1.1rem;
   }
   .intro .intro-body .intro-text {
-    font-size: 26px;
+    font-size: 2.6rem;
   }
 }
 @media (max-width: 768px) {
@@ -215,10 +216,10 @@ th {
     height: 100%;
   }
   .brand-heading {
-    font-size: 90px !important;
+    font-size: 9rem !important;
   }
   h3 {
-    font-size: 30px;
+    font-size: 3rem;
   }
   .btn-circle {
     width: 100px;
@@ -226,7 +227,7 @@ th {
   }
   #btn-plane {
     float: left;
-    font-size: 70px;
+    font-size: 7rem;
     margin-left: 5px;
   }
   th:nth-child(even) {
@@ -237,7 +238,7 @@ th {
   }
   th:nth-child(2) {
     display: block;
-    border-bottom: none !important;
+    border-bottom: none;
   }
   td:nth-child(even) {
     display: none;
@@ -254,13 +255,13 @@ th {
     height: 100%;
   }
   .brand-heading {
-    font-size: 75px !important;
+    font-size: 7.5rem;
   }
   h2 {
-    font-size: 24px;
+    font-size: 2.4rem;
   }
   h3 { 
-    font-size: 26px;
+    font-size: 2.6rem;
   }
   .btn-circle {
     width: 90px;
@@ -268,7 +269,7 @@ th {
   }
   #btn-plane {
     float: left;
-    font-size: 60px;
+    font-size: 6rem;
     margin-left: 5px;
   }
   th:nth-child(even) {
@@ -289,17 +290,17 @@ th {
     height: 100%;
   }
   .brand-heading {
-    font-size: 75px !important;
+    font-size: 7.5rem;
     padding-top: 70px;
   }
   h2 {
-    font-size: 20px;
+    font-size: 2rem;
   }
   h3 { 
-    font-size: 36px;
+    font-size: 3.6rem;
   }
   p {
-    font-size: 10px;
+    font-size: 1rem;
   }
   .btn-circle {
     width: 110px;
@@ -307,48 +308,23 @@ th {
   }
   #btn-plane {
     float: left;
-    font-size: 80px;
+    font-size: 8rem;
     margin-left: 3px;
   }
   .table-responsive {
-    font-size: 14px !important;
+    font-size: 14px;
   }
   .hideThis {
     display:none;
   }
   .close {
-    font-size: 18px !important;
+    font-size: 18px;
   }
   #eventsTitle {
-    font-size: 14px !important;
+    font-size: 14px;
   }
   .description,
   .title {
-    font-size: 14px !important;
+    font-size: 14px;
   }
-}
-/*#footer {
-  clear: both;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #84888e;
-  text-align: center;
-}
-#footerText {
-  position: absolute;
-  color: black;
-  font-size: 12px;
-  margin-bottom: 10px;
-  margin-top: 5px;
-}
-*/
-/*
-footer{
-  font-size: 2rem;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  position: bottom;
-  margin-top: -3rem;
-}*/
+}  */

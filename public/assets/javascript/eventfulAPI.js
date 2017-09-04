@@ -36,16 +36,12 @@ $(document).ready(function () {
           $("#modal-body").append("<h3 style='text-align:center; margin:20%'>You'll have to make your own fun!</h3>");
         } else {
           for (i = 0; i < response.event.length; i++) {
-            if ($(window).width() <= 1030) {
-              $("#modal-body").append(`<div class="modalEvent col-sm-6"><h3 class="modalTitle">${response.event[i].title}</h3><h5 style="font-size: 2.5rem">${response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm")}</h5><p style="font-style: normal; font-size:2rem;"><a style="font-style: normal; font-weight: normal;" target="_blank" href="${response.event[i].venue_url}">Click to visit the webpage!</a></p></div>`);
+            if (response.event[i].description) {
+              response.event[i].description = (response.event[i].description).substring(0, 750) + "...";
             } else {
-              if (response.event[i].description) {
-                response.event[i].description = (response.event[i].description).substring(0, 750) + "...";
-              } else {
-                response.event[i].description = "";
-              }
-              $("#modal-body").append(`<div class="modalEvent col-sm-6"><h3 class="modalTitle">${response.event[i].title}</h3><h5 style="font-size: 2.5rem">${response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm")}</h5><p style="font-style: normal; font-size:2rem;" class="modalDescription">${response.event[i].description}</p><p><a style="font-style: normal; font-weight: normal;" target='_blank' href="${response.event[i].venue_url}">Click to visit the webpage!</a></p></div>`);
+              response.event[i].description = "";
             }
+            $("#modal-body").append(`<div class="modalEvent col-sm-6"><h3 class="modalTitle">${response.event[i].title}</h3><h5 style="font-size: 2.5rem">${response.event[i].venue_name + " " + moment(response.event[i].start_time).format("MM/DD/YYYY HH:mm")}</h5><p style="font-style: normal; font-size:2rem;" class="modalDescription">${response.event[i].description}</p><p><a style="font-style: normal; font-weight: normal;" target='_blank' href="${response.event[i].venue_url}">Click to visit the webpage!</a></p></div>`);
           }
         }
       }

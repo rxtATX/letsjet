@@ -1,9 +1,9 @@
 /* Favicon Color: #37a0f1 */
 #datesPanel {
   position:absolute;
-  top: 6vh;
-  padding-left: 34%;
-  font-size: 60px;
+  top: calc(10% + 2vmax);
+  left: calc(1vh + 20vmax);
+  font-size: 6vmax;
   z-index: -10;
 }  
  #flightResults {
@@ -12,7 +12,7 @@
 } 
 #response-content {
   position: absolute;
-  top:12vh;
+  top: calc(10vh + 10vw);
   left:3.5vw;
   right:3.5vw;
   padding-bottom: 3vh;
@@ -23,21 +23,21 @@ strong {
 .eventsBtn {
   width: 18rem;
   height:6vh;
-  color: white !important;
-  border-radius:10px !important;
+   color: white !important; 
+   border-radius:1rem !important; 
   margin-top: 6%; 
   font-size: 2rem;
 }
 div.infoDiv {
   min-height: 30rem;
   padding-top: 1%;
-  width: 28vw !important;
-  margin: 1vw !important;
+   width: 70rem; 
+   margin: 1rem 2rem; 
   background: white;
   display: inline-flex;
   border: thin solid rgba(57,4,0,.1);
-  border-radius: 14.5px;
-  box-shadow: 0px 1px 5px 1px rgba(0,0,0,.6);
+  border-radius: 1.45rem;
+  box-shadow: 0rem .1rem .5rem .1rem rgba(0,0,0,.6);
 }
 div.infoDiv:hover strong{
   color: #1798c4;
@@ -52,16 +52,16 @@ p.card-text {
 #nextBtn, #homeBtn {
   margin: 1%;
   margin-bottom: 0;
-  height:80px !important;
-  width:80px !important;
+   height:8rem; 
+   width:8rem; 
 }
 #homeBtn {
-  margin-left: 2% !important;
+   margin-left: 2%; 
 }
 /* Events Button */
 .eventsBtn, #nextBtn, #homeBtn {
   border-radius: 0;
-  background-color: hsl(195, 79%, 43%) !important;
+   background-color: hsl(195, 79%, 43%); 
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c5eb", endColorstr="#1798c4");
   background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), to(#1798c4));
@@ -73,21 +73,21 @@ p.card-text {
   background-image: linear-gradient(#56c5eb, #1798c4);
   border-color: #1798c4 #1798c4 hsl(195, 79%, 38%);
   color: #000000;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+  text-shadow: 0 .1rem .1rem rgba(255, 255, 255, 0.33);
   -webkit-font-smoothing: antialiased;
 }
 .eventsBtn:hover, #nextBtn:hover, #homeBtn:hover {
   background: #56c5eb;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+  box-shadow: .5rem .5rem .5rem rgba(0,0,0,0.4);
 }
 #btn-home, #btn-next {
-  font-size: 50px;
-  margin-left: 0px;
+  font-size: 5rem;
+  margin-left: 0rem;
   color: white;
 }
 #btn-next {
-  margin-left:4px;
-  margin-top:4px;
+  margin-left:.4rem;
+  margin-top:.4rem;
 }
 /* The Modal (background) */
 .modal {
@@ -109,7 +109,7 @@ p.card-text {
 
 /* Modal Content */
 .modal-content {
-  border-radius: 14.5px;
+  border-radius: 1.45rem;
   position: fixed;
   height: 90%;
   bottom: 5%;
@@ -125,7 +125,7 @@ p.card-text {
 .close {
   color: black;
   float: right;
-  font-size: 28px;
+  font-size: 2.8rem;
   font-weight: bold;
 }
 .close:hover,
@@ -135,13 +135,13 @@ p.card-text {
   cursor: pointer;
 }
 .modal-header {
-  border-radius: 12.5px 12.5px 0 0;
+  border-radius: 1.25rem 1.25rem 0 0;
   background-color: #1798C4;
   font-family: "Oswald", Helvetica, Arial, sans-serif;
   color: white;
 }
 #eventsTitle {
-  margin: 0 !important;
+   margin: 0; 
   font-size: 6rem;
   text-align: center;
 }
@@ -160,11 +160,11 @@ p.card-text {
 }
 /* Add Animation */
 @-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
+    from {bottom: -30rem; opacity: 0} 
     to {bottom: 5%; opacity: 1}
 }
 @keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
+    from {bottom: -30rem; opacity: 0}
     to {bottom: 5%; opacity: 1}
 }
 @-webkit-keyframes fadeIn {
@@ -175,13 +175,11 @@ p.card-text {
     from {opacity: 0} 
     to {opacity: 1}
 }
-::scrollbar {
-  color:red;
-}
+
 .overlay{
   position:fixed;
    background:url(../img/Impulso-2.jpg) repeat-y 0 0 fixed;
-   background-size: calc(100% + 17px) calc(100% + 60px);
+   background-size: calc(100% + 170px) calc(100% + 60px);
   -webkit-animation:100s scroll infinite linear;
   -moz-animation:100s scroll infinite linear;
   -o-animation:100s scroll infinite linear;
@@ -196,84 +194,95 @@ p.card-text {
 
 @-webkit-keyframes scroll{
   100%{
-    background-position:0px -3000px;
+    background-position:0rem -300rem;
   }
 }
 
 @-moz-keyframes scroll{
   100%{
-    background-position:0px -3000px;
+    background-position:0rem -300rem;
   }
 }
 
 @-o-keyframes scroll{
   100%{
-    background-position:0px -3000px;
+    background-position:0rem -300rem;
   }
 }
 
 @-ms-keyframes scroll{
   100%{
-    background-position:0px -3000px;
+    background-position:0rem -300rem;
   }
 }
 
 @keyframes scroll{
   100%{
-    background-position:0px -3000px;
+    background-position:0rem -300rem;
   }
 }
-@media (max-width: 1524px) {
-  div.infoDiv {
-    width: 32vw !important;
-    margin: 1vw 3vw !important;
-  }
-}
-@media (max-width: 1366px) {
-  div.infoDiv {
-    width: 40vw !important;
-    margin: 1vw 2vw !important;
-  }
+@media (min-width: 300px) and (max-width: 600px) {
   #datesPanel {
-    padding-left: 30% !important;
+    left: 1vw !important;
+    right: 1vw;
+    font-size: 4vmax;
   }
 }
-@media (max-width: 1070px) {
-  div.infoDiv {
-    width: 43vw !important;
-    margin: 1vw !important;
+@media (min-width: 600px) and (max-width: 696px) {
+  #datesPanel {
+    left: 1vw !important;
+    right: 1vw;
+    font-size: 5vmax;
   }
 }
-@media (max-width: 1030px) {
+
+@media (min-width: 300px) and (max-width: 1023px) {
+  .modalDescription {
+    display:none;
+  }
+  .brand-heading {
+    /* font-size: 8rem !important; */
+    margin-bottom: 4rem !important;
+  }
+    #datesPanel {
+    left: calc(1vh + 5vmax);
+  } 
   div.infoDiv {
-    width: 60vw !important;
+    width: 90vmin;
+    margin: 1vmin;
+  }
+  .modal-content {
+    height: 96%;
+    bottom: 2%;
+    width: 96%;
+    left: 2%;
+  }
+  #modal-body {
+    max-height: calc(100% - 16%) !important;
+  }
+  .modalTitle {
+    font-size: 3rem;
+  }
+  .modalEvent > h5 {
+    font-size: 2rem !important;
+  }
+}
+@media (min-width: 320px) and (max-width: 1023px) {
+  .eventsBtn {
+    padding-bottom: 10vmin !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  #datesPanel {
+    left: calc(1vh + 10vmax);
+  } 
+  .eventsBtn {
+    padding-bottom: 1vmin !important;
   }
   .col-sm-6 {
-    width: 100% !important;
+    width: 100%;
   }
-}
-@media (max-width: 930px) {
-  #datesPanel {
-    padding-top: 4%;
-    padding-left: 16.5% !important;
-  }
-}
-@media (max-width: 850px) {
-  #datesPanel {
-    padding-left: 14% !important;
-  }
-}
-@media (max-width: 780px) {
-  div.infoDiv {
-    width: 75vw !important;
-  }
-  #datesPanel {
-    padding-left: 10% !important;
-  }
-}
-@media (max-width: 715px) {
-  #datesPanel {
-    margin-top: -6%;
-    padding-left: 32% !important;
+  .modalDescription {
+    display: block;
   }
 }

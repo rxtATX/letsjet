@@ -152,7 +152,7 @@ $(document).ready(function () {
             airIn: airInHold,
             price: prices
           };
-          if (filtered.length < 12) {
+          if (filtered.length < 8) {
             filtered.push(object);
           }
         }
